@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
+
+* {/*** General Settings ***/
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 62.5%;
+
+}
+body {
+  background: linear-gradient(45deg, #ee7752,  #e73c7e, #23a6d5,  #23d5ab);
+  background-size: 500%;
+  animation: gradient 20s ease infinite;
+  font-family: 'Press Start 2P', sans-serif;
+  color: #eee;
+  cursor: default;
+}
+@keyframes gradient {
+  0% {
+    background-position: 0% 25%;
+  }
+  25% {
+    background-position: 25% 50%;
+  }
+  50% {
+    background-position: 50% 100%;
+  }
+  75% {
+    background-position: 50% 25%;
+  }
+  100%{
+    background-position: 25% 0%;
+  }
+}
+/* LAYOUT */
+header {
+  position: relative;
+  height: 35vh;
+  border-bottom: 7px dashed #eee;
+}
+
+main {
+  height: 65vh;
+  color: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.left {
+  width: 52rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.right {
+  width: 52rem;
+  font-size: 3.6rem;
+}
+
+/* ELEMENTS STYLE */
+h1 {
+  font-size: 3.6rem;
+  text-align: center;
+  padding-top: 4%;
+  width: 100%;
+}
+
+.number {
+  background: #eee;
+  color: #333;
+  font-size: 6rem;
+  width: 15rem;
+  padding: 3rem 0rem;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+.between {
+  font-size: 1.4rem;
+  text-align: center;
+  padding-top: 2%;
+}
+
+.again {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  display: none;
+}
+
+.guess {
+  background: none;
+  border: 4px solid #eee;
+  font-family: inherit;
+  color: inherit;
+  font-size: 5rem;
+  padding: 2.5rem;
+  width: 25rem;
+  text-align: center;
+  display: block;
+  margin-bottom: 3rem;
+}
+.label-highscore {
+  position: absolute;
+  top: 5%;
+  right: 1%;
+  font-size: 2rem;
+}
+.highscore {
+  font-size: 2rem;
+}
+.btn {
+  border: none;
+  background-color: #eee;
+  color: #222;
+  font-size: 2rem;
+  font-family: inherit;
+  padding: 2rem 3rem;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #ccc;
+}
+
+.message {
+  margin-bottom: 8rem;
+  height: 3rem;
+}
+
+.label-score {
+  margin-bottom: 2rem;
+}

@@ -1,8 +1,9 @@
 'use strict';
 
-// Gives a number between 0 and 10
-const secretNumber = Math.floor(Math.random() * 11);
+// Gives a number between 1 and 10
+const secretNumber = Math.floor((Math.random() * 10) + 1);
 
+const mid = document.querySelector(".mid")
 let score = 3;
 let highScore = 0;
 const showMessage = message => {
@@ -15,18 +16,20 @@ document.querySelector(".check").addEventListener("click", function() {
     console.log(guess)
 
     // If there is no number
-    if(!guess) {
+    if(!guess === "number" || guess === 0) {
         showMessage("Enter a number.");
 
         // IF CORRECT
     } else if (guess === secretNumber) {
         showMessage("Correct Number!");
-        document.querySelector(".number").style.background = "green";
         document.querySelector(".number").textContent = secretNumber;
+        document.querySelector("header").style.borderBottom ="7px solid green"
+        document.querySelector(".number").style.border = "7px solid green";
         if (score > highScore) {
             highScore = score;
             document.querySelector(".highscore").textContent = highScore;
             document.querySelector(".again").style.display = "block";
+
         }
 
         // IF WRONG
@@ -38,12 +41,16 @@ document.querySelector(".check").addEventListener("click", function() {
             document.querySelector(".score").textContent = score;
         } else {
             showMessage("GAME OVER!");
-            document.querySelector(".number").style.background = "red";
-            document.querySelector(".again").style.display = "block";
+            document.querySelector(".number").style.border = "7px solid red";
+            document.querySelector(".number").textContent = "X";
+            document.querySelector(".again").classList.remove("hidden")
+            document.querySelector("header").style.borderBottom ="7px solid red"
+            mid.classList.remove("hidden")
         }
     }
 });
 
+// TRY AGAIN
 document.querySelector(".again").addEventListener("click", function(){
     score = 3;
     const secretNumber = Math.floor(Math.random() * 11);
@@ -52,5 +59,8 @@ document.querySelector(".again").addEventListener("click", function(){
     document.querySelector(".number").textContent = "?";
     document.querySelector(".guess").value = "";
     document.querySelector(".number").style.background = "#eee";
-    document.querySelector(".again").style.display = "none";
+    document.querySelector("header").style.borderBottom ="7px dashed #eee"
+    document.querySelector(".number").style.border = "none";
+    document.querySelector(".again").classList.add = "hidden";
+    mid.classList.add("hidden")
 })

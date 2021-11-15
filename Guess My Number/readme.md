@@ -1,5 +1,5 @@
 <h1 align="center">Guess My Number</h1>
-<h3 align="center">This is a JavaScript Challenge to improve my JS knowledge.</h3>
+<h3 align="center">This is a JavaScript Challenge that I made to improve my JS knowledge.</h3>
 <p align="center">This project has responsive design.</p>
 
 ---

@@ -1,19 +1,25 @@
 'use strict';
 
 // Gives a number between 1 and 10
-const secretNumber = Math.floor((Math.random() * 10) + 1);
+let secretNumber = Math.floor((Math.random() * 10) + 1);
 
-const mid = document.querySelector(".mid")
+// Declaring variables
+let mid = document.querySelector(".mid");
+let number = document.querySelector(".number");
+let again = document.querySelector(".again");
+let header = document.querySelector("header");
+let check = document.querySelector(".check");
 let score = 3;
 let highScore = 0;
+
+// Displaying the Message
 const showMessage = message => {
     document.querySelector(".message").textContent = message;
 }
 
 // Checking the numbers
-document.querySelector(".check").addEventListener("click", function() {
-    const guess = Number(document.querySelector(".guess").value);
-    console.log(guess)
+check.addEventListener("click", function() {
+    let guess = Number(document.querySelector(".guess").value);
 
     // If there is no number
     if(!guess === "number" || guess === 0) {
@@ -22,14 +28,14 @@ document.querySelector(".check").addEventListener("click", function() {
         // IF CORRECT
     } else if (guess === secretNumber) {
         showMessage("Correct Number!");
-        document.querySelector(".number").textContent = secretNumber;
-        document.querySelector("header").style.borderBottom ="7px solid green"
-        document.querySelector(".number").style.border = "7px solid green";
+        number.textContent = secretNumber;
+        header.style.borderBottom ="7px solid green"
+        number.style.border = "7px solid green";
+        mid.classList.remove("hidden")
+       again.classList.remove("hidden")
         if (score > highScore) {
             highScore = score;
             document.querySelector(".highscore").textContent = highScore;
-            document.querySelector(".again").style.display = "block";
-
         }
 
         // IF WRONG
@@ -41,10 +47,10 @@ document.querySelector(".check").addEventListener("click", function() {
             document.querySelector(".score").textContent = score;
         } else {
             showMessage("GAME OVER!");
-            document.querySelector(".number").style.border = "7px solid red";
-            document.querySelector(".number").textContent = "X";
-            document.querySelector(".again").classList.remove("hidden")
-            document.querySelector("header").style.borderBottom ="7px solid red"
+            number.style.border = "7px solid red";
+            number.textContent = "X";
+           again.classList.remove("hidden")
+            header.style.borderBottom ="7px solid red"
             mid.classList.remove("hidden")
         }
     }
@@ -53,14 +59,14 @@ document.querySelector(".check").addEventListener("click", function() {
 // TRY AGAIN
 document.querySelector(".again").addEventListener("click", function(){
     score = 3;
-    const secretNumber = Math.floor(Math.random() * 11);
+    secretNumber = Math.floor((Math.random() * 10) + 1)
     showMessage("Start guessing...");
     document.querySelector(".score").textContent = score;
-    document.querySelector(".number").textContent = "?";
+    number.textContent = "?";
     document.querySelector(".guess").value = "";
-    document.querySelector(".number").style.background = "#eee";
-    document.querySelector("header").style.borderBottom ="7px dashed #eee"
-    document.querySelector(".number").style.border = "none";
-    document.querySelector(".again").classList.add = "hidden";
+    number.style.background = "#eee";
+    header.style.borderBottom ="7px dashed #eee"
+    number.style.border = "none";
+    again.classList.add = "hidden";
     mid.classList.add("hidden")
 })

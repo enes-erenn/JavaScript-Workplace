@@ -2,6 +2,7 @@
 
 // Gives a number between 1 and 10
 let secretNumber = Math.floor((Math.random() * 10) + 1);
+console.log(secretNumber)
 
 // Declaring variables
 let mid = document.querySelector(".mid");

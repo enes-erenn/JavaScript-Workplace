@@ -11,6 +11,7 @@ let header = document.querySelector("header");
 let check = document.querySelector(".check");
 let score = 3;
 let highScore = 0;
+document.querySelector(".highscore").textContent = localStorage.getItem("score") || 0;
 
 // Displaying the Message
 const showMessage = message => {
@@ -35,6 +36,7 @@ check.addEventListener("click", function() {
        again.classList.remove("hidden")
         if (score > highScore) {
             highScore = score;
+            localStorage.setItem("score", highScore)
             document.querySelector(".highscore").textContent = highScore;
         }
 

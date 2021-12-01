@@ -1,8 +1,8 @@
 "use strict";
 
-//BMI CALCULATOR
+// FUNDAMENTALS PART - 1 //
+// BMI CALCULATOR
 
-// BMI FORMULA 
 // BMI = weight / height ** 2;
 
 // DATA 
@@ -12,25 +12,25 @@ const marksHeight = 1.69;
 const johnsWeight = 92;
 const johnsHeight = 1.95;
 
-// BMI TEST 1
+// Challenge 1 - Calculating BMI's
 const marksBMI = marksWeight / marksHeight ** 2;
 const johnsBMI = johnsWeight / johnsHeight ** 2;
 console.log(`Mark's BMI is ${marksBMI}.`)
 console.log(`John's BMI is ${johnsBMI}.`)
 
-// COMPARING BMI's
+// Challenge 2 - Comparing BMI's
 const markHigherBMI = (marksBMI, johnsBMI) => {
     if (marksBMI > johnsBMI){
-        return `Mark's BMI (${marksBMI}) is higher than John's BMI (${johnsBMI})`
+        return `Mark's BMI (${marksBMI}) is higher than John's BMI (${johnsBMI}.)`
     } else {
-        return `John's BMI (${johnsBMI}) is higher than Mark's BMI (${marksBMI})`
+        return `John's BMI (${johnsBMI}) is higher than Mark's BMI (${marksBMI}.)`
     }
 }
 console.log(markHigherBMI(marksBMI, johnsBMI))
 
 // DOLPHINS & KOALAS
 
-// DATA 1
+// DATA
 const firstScoreDolphins = 97;
 const secondScoreDolphins = 112;
 const thirdScoreDolphins = 101;
@@ -47,7 +47,7 @@ const averageKoalas = (firstScoreKoalas + secondScoreKoalas + thirdScoreKoalas) 
 console.log(`Dolphins' average is ${averageDolphins}.`)
 console.log(`Koalas' average is ${averageKoalas}.`)
 
-// CHOOSING THE WINNER
+// Challenge 3 - CHOOSING THE WINNER
 const whoIsWinner = (averageDolphins, averageKoalas) => {
     if (averageDolphins > averageKoalas && averageDolphins > 100 ) {
         return `
@@ -68,7 +68,7 @@ const whoIsWinner = (averageDolphins, averageKoalas) => {
 }
 console.log(whoIsWinner(averageDolphins, averageKoalas))
 
-// TIP CALCULATOR
+// Challenge 4 - TIP CALCULATOR
 
 // TIP RATES
 // If, bills value is between 50 - 300, tip is 15%.
@@ -83,10 +83,10 @@ const tip = bills[0] <= 300 && bills[0] >= 50 ? bills[0] * 0.15 : bills[0] * 0.2
 // TOTAL
 console.log(`The bill was ${bills[0]}, the tip was ${tip}, and the total value is ${bills[0] + tip}.`)
 
-// DOLPHINS & KOALAS V2
+// FUNDAMENTALS PART - 2
+// DOLPHINS & KOALAS
 
 // DATA
-
 let dolphinsFirstScore = 85;
 let dolphinsSecondScore = 54;
 let dolphinsThirdScore = 41;
@@ -96,7 +96,6 @@ let koalasSecondScore = 34;
 let koalasThirdcore = 27;
 
 // AVERAGE CALCULATOR
-
 const calcAverage = (a, b, c) => {
     return (a + b + c) / 3;
 }
@@ -105,10 +104,9 @@ const dolphinsAverage = calcAverage(dolphinsFirstScore, dolphinsSecondScore, dol
 const koalasAverage = calcAverage(koalasFirstScore, koalasSecondScore, koalasThirdcore)
 
 console.log(`Dolphins average: ${dolphinsAverage},
-Koalas average: ${koalasAverage}
-`)
-// CHECK WINNER
+Koalas average: ${koalasAverage}`)
 
+// Challenge 5 - CHECK WINNER
 const checkWinner = (dolphinsAverage, koalasAverage) => {
     if(dolphinsAverage > koalasAverage * 2){
         console.log(`
@@ -126,7 +124,7 @@ const checkWinner = (dolphinsAverage, koalasAverage) => {
 }
 checkWinner(dolphinsAverage, koalasAverage)
 
-// TIP CALCULATOR V2
+// Challenge 6 - TIP CALCULATOR
 
 // TIP RATES
 // If, bills value is between 50 - 300, tip is 15%.
@@ -144,7 +142,7 @@ const calcTip = function(bill){
 // TOTAL
 console.log(`The bill was ${bills[1]}, the tip was ${calcTip(bills[1])}, and the total value is ${bills[1] + calcTip(bills[1])}.`)
 
-//BMI CALCULATOR V2
+// Challenge 7 - BMI CALCULATOR
 
 // BMI FORMULA
 // BMI = weight / height ** 2;
@@ -164,7 +162,6 @@ const john = {
 }
 
 // BMI TEST
-
 const calcBMI = (weight, height) => {
     return weight / height ** 2;
 }
@@ -184,13 +181,11 @@ const higherBMI = function(){
 }
 console.log(higherBMI(mark.BMI, john.BMI));
 
-// TIP CALCULATOR V3
-
+// Challenge 8 -  TIP CALCULATOR
 const billsToday = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52]
 const tipsToday = []
 const totalsToday = []
 let totalToday = []
-
 
 // TIP VALUES
 const calcTips = function(bills){
@@ -221,3 +216,136 @@ Today's tips are ${tipsToday},
 Today's totals are ${totalsToday},
 Today's average is ${calcAvg(totalsToday)}
 `)
+
+// Data Structures, Modern Operators and Strings
+
+//FOOTBALL GAME
+
+//DATA
+const game = {
+    teamA: "Bayern Munich",
+    teamB: "Dortmund",
+    players: [
+        [
+        'Neuer',
+        'Pavard',
+        'Martinez',
+        'Alaba',
+        'Davies',
+        'Kimmich',
+        'Goretzka',
+        'Coman',
+        'Muller',
+        'Gnarby',
+        'Lewandowski',
+        ],
+        [
+        'Burki',
+        'Schulz',
+        'Hummels',
+        'Akanji',
+        'Hakimi',
+        'Weigl',
+        'Witsel',
+        'Hazard',
+        'Brandt',
+        'Sancho',
+        'Gotze',
+        ]
+    ],
+    score: "3:0",
+    scored: [
+        "Lewandowski",
+        "Gnarby",
+        "Lewandowski"
+    ],
+    date: "June 12th, 2020",
+    odds: {
+        teamA: 1.33,
+        x: 3.25,
+        teamB: 6.5,
+    }
+}
+
+//Destructuring
+const [playersA, playersB] = game.players;
+const [gkA, fieldPlayersA] = [playersA];
+const [gkB, fieldPlayersB] = [playersB];
+const allPlayers = [...playersA, ...playersB];
+const playersAFinal = [...playersA, "Thiago", "Coutinho", "Perisic"];
+
+//Function
+const printGoals = function(...players) {
+    console.log(`${players.length} goals were scored`)
+}
+
+printGoals(...game.scored)
+
+// PRINTING ALL PLAYERS
+for (const item of game.scored.entries()) {
+    console.log(`Goal ${item[0] + 1}: ${item[1]}`)
+}
+
+//PRINTING ODDS
+const odds = Object.values(game.odds);
+let average = 0;
+for (const odd of odds) average += odd;
+average /= odds.length;
+console.log(average);
+
+for (const [team, odd] of Object.entries(game.odds)) {
+    const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
+    console.log(`Odd of ${teamStr} ${odd}`);
+}
+
+// FOOTBALL GAME WITH MAP
+const gameEvents = new Map([
+    [17, '⚽ GOAL'],
+    [36, '🔁 Substitution'],
+    [47, '⚽ GOAL'],
+    [61, '🔁 Substitution'],
+    [64, '🔶 Yellow card'],
+    [69, '🔴 Red card'],
+    [70, '🔁 Substitution'],
+    [72, '🔁 Substitution'],
+    [76, '⚽ GOAL'],
+    [80, '⚽ GOAL'],
+    [92, '🔶 Yellow card'],
+]);
+
+//GETTING THE EVENTS (KEYS) IN A MAP
+const events = [...new Set(gameEvents.values())]
+console.log(events)
+
+//GETTING THE TIME OF THE GAME
+const time = [...gameEvents.keys()].pop()
+console.log(time)
+
+//DELETING AN EVENT IN A MAP
+gameEvents.delete(64);
+
+console.log(`An event happened, on average, every ${time / gameEvents.size} minutes.`)
+
+//PRINTING THE GAME
+for (const [min, event] of gameEvents) {
+    const half = min <= 45 ? "FIRST" : "SECOND"
+    console.log(`[${half} HALF] ${min}: ${event}`)
+}
+
+//Strings
+
+//TEST DATA
+
+const testData = [
+    "underscore_case",
+    " first_name",
+    "Some_Variable",
+    "  calculate_AGE",
+    "delayed_departure",
+];
+
+for (const item of testData) {
+    const [first, second] = item.toLowerCase().trim().split("_");
+    const output = first + second.replace(second[0], second[0].toUpperCase())
+    console.log(output)
+}

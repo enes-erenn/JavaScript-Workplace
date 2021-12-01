@@ -219,9 +219,9 @@ Today's average is ${calcAvg(totalsToday)}
 
 // Data Structures, Modern Operators and Strings
 
-//FOOTBALL GAME
+// FOOTBALL GAME
 
-//DATA
+// DATA
 const game = {
     teamA: "Bayern Munich",
     teamB: "Dortmund",
@@ -267,14 +267,14 @@ const game = {
     }
 }
 
-//Destructuring
+// Destructuring
 const [playersA, playersB] = game.players;
 const [gkA, fieldPlayersA] = [playersA];
 const [gkB, fieldPlayersB] = [playersB];
 const allPlayers = [...playersA, ...playersB];
 const playersAFinal = [...playersA, "Thiago", "Coutinho", "Perisic"];
 
-//Function
+// Function
 const printGoals = function(...players) {
     console.log(`${players.length} goals were scored`)
 }
@@ -286,7 +286,7 @@ for (const item of game.scored.entries()) {
     console.log(`Goal ${item[0] + 1}: ${item[1]}`)
 }
 
-//PRINTING ODDS
+// PRINTING ODDS
 const odds = Object.values(game.odds);
 let average = 0;
 for (const odd of odds) average += odd;
@@ -313,28 +313,28 @@ const gameEvents = new Map([
     [92, '🔶 Yellow card'],
 ]);
 
-//GETTING THE EVENTS (KEYS) IN A MAP
+// GETTING THE EVENTS (KEYS) IN A MAP
 const events = [...new Set(gameEvents.values())]
 console.log(events)
 
-//GETTING THE TIME OF THE GAME
+// GETTING THE TIME OF THE GAME
 const time = [...gameEvents.keys()].pop()
 console.log(time)
 
-//DELETING AN EVENT IN A MAP
+// DELETING AN EVENT IN A MAP
 gameEvents.delete(64);
 
 console.log(`An event happened, on average, every ${time / gameEvents.size} minutes.`)
 
-//PRINTING THE GAME
+// PRINTING THE GAME
 for (const [min, event] of gameEvents) {
     const half = min <= 45 ? "FIRST" : "SECOND"
     console.log(`[${half} HALF] ${min}: ${event}`)
 }
 
-//Strings
+// Strings
 
-//TEST DATA
+// TEST DATA
 
 const testData = [
     "underscore_case",
@@ -349,3 +349,41 @@ for (const item of testData) {
     const output = first + second.replace(second[0], second[0].toUpperCase())
     console.log(output)
 }
+
+// A Closer Look at Functions
+
+// DATA [1, 5, 3, 9, 6, 1]
+
+const poll = {
+    question: "What is your favourite programming language?",
+    options: ["0: JavaScript", "1: Python", "2: Rust", "3: C++"],
+
+    // This generates [0, 0, 0, 0]. More in the next section!
+    answers: new Array(4).fill(0),
+    registerNewAnswer () {
+        const answer = Number(prompt(`${this.question}\n${this.options.join("\n")}\n(Write Option Number)`))
+        console.log(answer)
+        typeof answer === "number" && answer < this.answers.length && this.answers[answer]++;
+        this.displayResults();
+        this.displayResults("string")
+        console.log(this.answers)
+    },
+    displayResults(type = "array") {
+        if (type === "array"){
+            console.log(this.answers)
+        } else if (type === "string"){
+            console.log(`Poll results are ${this.answers.join(", ")}`)
+        }
+    }
+};
+  
+  // IIFE
+
+  (function () {
+    const header = document.querySelector('h1');
+    header.style.color = 'red';
+  
+    document.querySelector('body').addEventListener('click', function () {
+      header.style.color = 'blue';
+    });
+  })();

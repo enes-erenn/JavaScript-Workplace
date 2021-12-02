@@ -378,12 +378,32 @@ const poll = {
 };
   
   // IIFE
-
   (function () {
+
     const header = document.querySelector('h1');
-    header.style.color = 'red';
-  
+    header.style.color = '#fff';
+    
     document.querySelector('body').addEventListener('click', function () {
-      header.style.color = 'blue';
+        const randomNumber = Math.floor(Math.random() * 1000000)
+      header.style.color = `#${randomNumber}`;
     });
   })();
+
+  // Data Julia's data [3, 5, 2, 12, 7], Kate's data [4, 1, 15, 8, 3]
+
+  // Extracting Cats and Dogs (This info comes from Tasks.pdf)
+    const dogsJulia_ = [3, 5, 2, 12, 7];
+    const dogsJulia = dogsJulia_.splice(1, 2);
+    const dogsKate = [4, 1, 15, 8, 3];
+
+  // Function
+const checkDogs = function(a, b) {
+    const dogs = a.concat(b)
+    dogs.forEach(function (dog, i){
+        if(dog >= 3) {
+            console.log(`Dog number ${i + 1} is an adult, and is ${dog} years old.`);
+        } else console.log(`Dog number ${i + 1} is still a puppy`);
+    })
+};
+
+checkDogs(dogsJulia, dogsKate);

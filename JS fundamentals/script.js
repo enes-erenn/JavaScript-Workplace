@@ -382,14 +382,14 @@ const poll = {
 
     const header = document.querySelector('h1');
     header.style.color = '#fff';
-    
+
     document.querySelector('body').addEventListener('click', function () {
         const randomNumber = Math.floor(Math.random() * 1000000)
       header.style.color = `#${randomNumber}`;
     });
   })();
 
-  // Data Julia's data [3, 5, 2, 12, 7], Kate's data [4, 1, 15, 8, 3]
+  // Julia's data [3, 5, 2, 12, 7], Kate's data [4, 1, 15, 8, 3]
 
   // Extracting Cats and Dogs (This info comes from Tasks.pdf)
     const dogsJulia_ = [3, 5, 2, 12, 7];
@@ -407,3 +407,27 @@ const checkDogs = function(a, b) {
 };
 
 checkDogs(dogsJulia, dogsKate);
+
+const euroToUsd = 1.1
+
+const currensies = dogsKate.map(mov => mov * euroToUsd)
+console.log(dogsKate)
+console.log(currensies)
+
+dogsKate.forEach(function(mov){
+    console.log(mov * euroToUsd);
+})
+
+console.log(dogsKate)
+
+// Data [5, 2, 4, 1, 15, 8, 3]
+const calcAverageHumanAge = function(ages) {
+    const humanAges = ages.map(age => (age <= 2 ? 2 * age : 16 + age * 4))
+    const adults = humanAges.filter(age => age >= 18)
+    console.log(humanAges)
+    console.log(adults)
+    const average = adults.reduce(
+        (acc, age, i, arr) => acc + age / arr.length, 0)
+    return average;
+}
+calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3])

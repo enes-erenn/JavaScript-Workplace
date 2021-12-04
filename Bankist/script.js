@@ -102,9 +102,9 @@ const displayMovements = function (movements, sort = false) {
   });
 };
 
-const calcDisplayBalance = movements => {
-  const balance = movements.reduce((acc, cur) => acc + cur, 0);
-  labelBalance.textContent = `${balance}€`
+const calcDisplayBalance = function(acc) {
+  acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${acc.balance}€`
 }
 
 const calcDisplaySummary = function(acc){
@@ -118,9 +118,9 @@ const calcDisplaySummary = function(acc){
   .reduce((acc, mov) => acc + mov, 0)
   labelSumOut.textContent = `${outcomes}€`
 
-  const interest = acc.interestRate
+  const interest = acc.movements
   .filter(mov => mov > 0)
-  .map(deposit => deposit * 1.2/100 )
+  .map(deposit => deposit * acc.interestRate )
   .filter((int, i, arr) => {
     return int >= 1;
   })
@@ -128,7 +128,7 @@ const calcDisplaySummary = function(acc){
   labelSumInterest.textContent = `${interest}€`
 }
 
-const createUsernames = function (accs) {
+const createUsernames = function(accs) {
   accs.forEach(function (acc) {
     acc.username = acc.owner
       .toLowerCase()
@@ -138,7 +138,11 @@ const createUsernames = function (accs) {
   });
 };
 createUsernames(accounts);
-
+const updateUI = function(acc) {
+  displayMovements(acc.movements);
+  calcDisplayBalance(acc);
+  calcDisplaySummary(acc);
+}
 let currentAccount;
 
 btnLogin.addEventListener('click', function (e) {
@@ -148,7 +152,6 @@ btnLogin.addEventListener('click', function (e) {
   currentAccount = accounts.find(
     acc => acc.username === inputLoginUsername.value
   );
-  console.log(currentAccount);
 
   if (currentAccount?.pin === Number(inputLoginPin.value)) {
     // Display UI and message
@@ -158,8 +161,22 @@ btnLogin.addEventListener('click', function (e) {
     containerApp.style.opacity = 100;
     inputLoginUsername.value = inputLoginPin.value = "";
     inputLoginPin.blur();
-    displayMovements(currentAccount.movements);
-    calcDisplayBalance(currentAccount.movements);
-    calcDisplaySummary(currentAccount);
+    updateUI(currentAccount)
+
   }
-})
+});
+
+btnTransfer.addEventListener("click", function(e){
+  e.preventDefault();
+  const amount = Number(inputTransferAmount.value);
+  const recevierAcc = accounts.find(acc => acc.username === inputTransferTo.value);
+  inputTransferAmount.value = inputTransferTo.value = ""
+  if(amount > 0 &&
+    recevierAcc &&
+     currentAccount.balance >= amount &&
+      recevierAcc?.username !== currentAccount.username) {
+        currentAccount.movements.push(-amount);
+        recevierAcc.movements.push(amount);
+        updateUI(currentAccount);
+      }
+});

@@ -189,7 +189,7 @@ btnLoan.addEventListener("click", function(e){
     updateUI(currentAccount);
   };
   inputLoanAmount.value = "";
-})
+});
 
 btnClose.addEventListener("click", function(e) {
   e.preventDefault();
@@ -201,4 +201,11 @@ btnClose.addEventListener("click", function(e) {
   }
   inputLoginUsername.value = inputLoginPin.value = "";
   labelWelcome.textContent = "Log in to get started"
-})
+});
+
+let sorted = false;
+btnSort.addEventListener("click", function(e){
+  e.preventDefault();
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
+});

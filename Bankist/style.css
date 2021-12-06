@@ -41,6 +41,7 @@ nav {
 
 .login {
   display: flex;
+  opacity: 1;
 }
 
 .login__input {

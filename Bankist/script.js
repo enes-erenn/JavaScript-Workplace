@@ -163,13 +163,36 @@ const createUsernames = function(accs) {
       .join('');
   });
 };
+
 createUsernames(accounts);
+
 const updateUI = function(acc) {
   displayMovements(acc);
   calcDisplayBalance(acc);
   calcDisplaySummary(acc);
 }
-let currentAccount;
+
+const startLogOutTimer = function() {
+  const tick = function() {
+    const min = String(Math.trunc(time / 60)).padStart(2, 0);
+    const sec = String(time % 60).padStart(2, 0);
+    labelTimer.textContent = `${min}:${sec}`;
+    if(time === 0){
+      clearInterval(timer);
+      labelWelcome.textContent = `Log in to get started`;
+      containerApp.style.opacity = 0;
+      login.style.opacity = 1;
+    }
+    --time;
+  }
+
+  let time = 300;
+  tick()
+  const timer = setInterval(tick, 1000)
+  return timer;
+}
+
+let currentAccount, timer;
 
 btnLogin.addEventListener('click', function (e) {
 
@@ -197,8 +220,10 @@ btnLogin.addEventListener('click', function (e) {
     labelDate.textContent = new Intl.DateTimeFormat(`${currentAccount.locale}`, options).format(now)
     inputLoginUsername.value = inputLoginPin.value = "";
     inputLoginPin.blur();
+    if(timer) clearInterval(timer);
+    timer = startLogOutTimer();
     login.style.opacity = 0;
-    updateUI(currentAccount)
+    updateUI(currentAccount);
   }
 });
 
@@ -211,11 +236,13 @@ btnTransfer.addEventListener("click", function(e){
     recevierAcc &&
      currentAccount.balance >= amount &&
       recevierAcc?.username !== currentAccount.username) {
-        currentAccount.movements.push(-amount);
-        recevierAcc.movements.push(amount);
-        currentAccount.movementsDates.push(new Date().toISOString());
-        recevierAcc.movementsDates.push(new Date().toISOString());
-        updateUI(currentAccount);
+        setTimeout(() => {
+          currentAccount.movements.push(-amount);
+          recevierAcc.movements.push(amount);
+          currentAccount.movementsDates.push(new Date().toISOString());
+          recevierAcc.movementsDates.push(new Date().toISOString());
+          updateUI(currentAccount);
+        }, 2000)
       }
 });
 
@@ -223,9 +250,11 @@ btnLoan.addEventListener("click", function(e){
   e.preventDefault();
   const amount = Math.floor(inputLoanAmount.value);
   if(amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)){
-    currentAccount.movements.push(amount);
-    currentAccount.movementsDates.push(new Date().toISOString());
-    updateUI(currentAccount);
+    setTimeout(() => {
+      currentAccount.movements.push(amount);
+      currentAccount.movementsDates.push(new Date().toISOString());
+      updateUI(currentAccount);
+    }, 2000)
   };
   inputLoanAmount.value = "";
 });

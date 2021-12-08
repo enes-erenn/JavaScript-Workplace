@@ -50,7 +50,7 @@ document.querySelector(".btn--close-cookie").addEventListener("click", function(
 })
 
 message.style.background = "#37383d";
-message.style.width = "120%";
+message.style.width = "100%";
 message.style.height = "5em";
 
 btnScrollTo.addEventListener("click", function(e) {
@@ -90,3 +90,20 @@ const handleHover = function(e) {
 
 nav.addEventListener("mouseover", handleHover.bind(0.5));
 nav.addEventListener("mouseout", handleHover.bind(1));
+
+const navHeight = nav.getBoundingClientRect().height;
+
+const stickyNav = function (entries) {
+  const [entry] = entries;
+
+  if (!entry.isIntersecting) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+};
+
+const headerObserver = new IntersectionObserver(stickyNav, {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${navHeight}px`,
+});
+
+headerObserver.observe(header);

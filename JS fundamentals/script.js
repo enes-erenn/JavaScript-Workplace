@@ -472,3 +472,27 @@ const checkEatingOkay = dog => dog.curFood > dog.recFood * 0.9 && dog.curFood < 
 
 const dogsSorted = dogs.slice().sort((a, b) => a.recFood - b.recFood);
 console.log(dogsSorted);
+
+
+// Prototype
+const car = function(make, speed){
+    this.make = make;
+    this.speed = speed;
+}
+const bmw = new car("bmw", 120);
+const mercedes = new car("mercedes", 95);
+
+car.prototype.accelerate = function(){
+    this.speed +=10;
+    console.log(`${this.make} is going at ${this.speed} km/h`);
+};
+
+car.prototype.brake = function(){
+    this.speed -= 5;
+    console.log(`${this.make} is going at ${this.speed} km/h`)
+};
+
+bmw.accelerate();
+bmw.brake();
+mercedes.accelerate();
+mercedes.brake();

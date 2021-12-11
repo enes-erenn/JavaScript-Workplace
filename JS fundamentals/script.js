@@ -510,12 +510,13 @@ class carCl {
     brake(){
         this.speed -= 5;
         console.log(`${this.make} is going at ${this.speed} km/h`)
+        return this;
     }
     get speedUS() {
         return this.speed / 1.6;
     }
     set speedUS(speed) {
-        this. speed *= 1.6
+        this.speed *= 1.6
     }
 };
 
@@ -548,3 +549,33 @@ tesla.chargeBattery(90);
 console.log(tesla);
 tesla.brake();
 tesla.accelerate();
+
+// ES6 Classes Usage
+
+class EVCl extends carCl {
+    #charge;
+
+    constructor(make, speed, charge) {
+      super(make, speed);
+      this.#charge = charge;
+    };
+  
+    chargeBattery(chargeTo) {
+      this.#charge = chargeTo;
+      return this;
+    };
+  
+    accelerate() {
+      this.speed += 20;
+      this.#charge--;
+      console.log(
+        `${this.make} is going at ${this.speed} km/h, with a charge of ${
+          this.#charge
+        }`
+      );
+      return this;
+    };
+}
+
+const rivian = new EVCl("Rivian", 100, 20);
+rivian.accelerate().accelerate().brake().chargeBattery(230).accelerate();;

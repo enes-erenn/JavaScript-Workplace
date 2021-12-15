@@ -1,42 +1,90 @@
-// Defining the elements.
-let input = document.getElementById("input");
-let add = document.getElementById("add");
-let list = document.getElementById("list");
+"use strict";
 
+// Defining the elements
+const input = document.querySelector("#input");
+const add = document.querySelector("#add");
+const list = document.querySelector("#list");
+const ntdEl = document.querySelector("#nothingToDo");
 
-// Adding "There is nothing to do today :)" if there is no list.
-let adderNTD = () => {
-    if(document.getElementById("list").childElementCount == 0) {            // If there is no list in the list,
-    let li = document.createElement("li");                                    // Create a li element,
-    li.textContent = "There is nothing to do today :)";                       // Includes "There is nothing to do today :)",
-    li.setAttribute("id", "nothingToDo");                                   // Add a ID called "nothingToDo",
-    list.appendChild(li)                                                    // Insert as a li into the "ul".
+// Adding "Nothing To Do" Element
+const ntdAdd = function (){
+    const ntd = document.createElement("li");
+    ntd.textContent = "There is nothing to do today :)";
+    ntd.setAttribute("id", "nothingToDo");
+    list.appendChild(ntd);
+} ;
+
+// Checking the "Nothing To Do" Element
+const adderNTD = function(){
+    if(list.childElementCount === 0){
+        ntdAdd();
+    } else if(list.childElementCount > 0){
+        ntdEl.remove();
     }
-}
+};
 
-// Adding List
-let addLi = () => {
-    if (input.value.length > 1) {                                           // If input value length is greater than 1;
-    let li = document.createElement("li");                                    // Create a li element,
-    let closeButton = document.createElement("button");                     // Create a button element,
-    li.textContent = input.value;                                             // Set the content of list item is input's value,
-    localStorage.setItem("list", JSON.stringify(list));
-    closeButton.textContent = "X";                                          // Button input is "X",
-    list.appendChild(li);                                                   // Insert as a li into the "ul",
-    li.append(closeButton);                                                 // Insert as a button into the "li",
-    closeButton.addEventListener('click', function(e){                      // When clicked to the "closeButton";
-        this.parentElement.remove();                                        // Remove Parent Element of this button,
-        let checker = document.getElementById("list").childElementCount;    // Check it how many element there is into the list,
-        console.log(checker)                                                // Print the element number to the console,
-        adderNTD();                                                         // Run the "adderNTD" function.
-    });
-    document.getElementById("nothingToDo").remove()                         // Remove the element that has an ID called "nothingToDo".
-    input.value=""                                                          // Set as nothing of the Input's value.
-    
-    } else {                                                                // If input value length is not greater than 1;
-        alert("Please fill in the blank properly.")                         // Occurs an alert.
+// toDoList Logic
+const toDoList = function(){
+    const li = document.createElement("li");
+    const closeButton = document.createElement("button");
+    // Checking the input value
+    if (input.value !== ""){
+        // Checking the "Nothing To Do" Element" every time and adding stuff to the list
+        if(document.querySelector("#nothingToDo")){
+            document.querySelector("#nothingToDo").remove()
+            li.textContent = input.value;
+            list.appendChild(li);
+            closeButton.textContent = "X";
+            closeButton.style.opacity= 0;
+            li.append(closeButton);
+            input.value = "";
+
+            // Delete the element "li"
+            li.addEventListener('click', function(){
+                this.remove();
+                adderNTD();
+            });
+
+            // Hover Effect
+            li.addEventListener("mouseover", function(){
+                closeButton.style.opacity= 1;
+            });
+
+            // Hover Effect
+            li.addEventListener("mouseout", function(){
+                closeButton.style.opacity= 0;
+            });
+        }
+
+        // Checking the "Nothing To Do" Element" every time and adding stuff to the list
+        else if(!document.querySelector("#nothingToDo")){
+            li.textContent = input.value;
+            list.appendChild(li);
+            closeButton.textContent = "X";
+            closeButton.style.opacity= 0;
+            li.append(closeButton);
+            input.value = "";
+
+            // Delete the element "li"
+            li.addEventListener('click', function(){
+                this.remove();
+                adderNTD();
+            });
+
+            // Hover Effect
+            li.addEventListener("mouseover", function(){
+                closeButton.style.opacity= 1;
+            });
+
+            // Hover Effect
+            li.addEventListener("mouseout", function(){
+                closeButton.style.opacity= 0;
+            });
+        };
+
+    } else{
+        alert("Please fill in the blank properly.");
     }
-}
+};
 
-
-add.addEventListener("click", addLi);                                       // Add an click event to the "add" and run the "addLi" function.
+add.addEventListener("click", toDoList);

@@ -91,7 +91,17 @@ button {
     float: right;
     cursor: pointer;
 }
-
+#refreshMemory {
+    width: 5rem;
+    height: 3rem;
+    border: none;
+    box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
+    border-radius: 4px;
+    cursor: pointer;
+    background: #eee;
+    transition: all 3s ease;
+    margin: auto auto;
+}
 footer {
     width: 100%;
     text-align: center;

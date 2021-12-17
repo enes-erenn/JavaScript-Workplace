@@ -9,7 +9,7 @@ const ntdEl = document.querySelector("#nothingToDo");
 // Adding "Nothing To Do" Element
 const ntdAdd = function (){
     const ntd = document.createElement("li");
-    ntd.textContent = "There is nothing to do today :)";
+    ntd.textContent = "There is nothing to do today 😃";
     ntd.setAttribute("id", "nothingToDo");
     list.appendChild(ntd);
 } ;
@@ -34,7 +34,7 @@ const toDoList = function(){
             document.querySelector("#nothingToDo").remove()
             li.textContent = input.value;
             list.appendChild(li);
-            closeButton.textContent = "X";
+            closeButton.textContent = "💣";
             closeButton.style.opacity= 0;
             li.append(closeButton);
             input.value = "";
@@ -60,7 +60,7 @@ const toDoList = function(){
         else if(!document.querySelector("#nothingToDo")){
             li.textContent = input.value;
             list.appendChild(li);
-            closeButton.textContent = "X";
+            closeButton.textContent = "💣";
             closeButton.style.opacity= 0;
             li.append(closeButton);
             input.value = "";
@@ -87,4 +87,4 @@ const toDoList = function(){
     }
 };
 
-add.addEventListener("click", toDoList);
+

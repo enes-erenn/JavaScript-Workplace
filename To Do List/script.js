@@ -23,6 +23,8 @@ const adderNTD = function(){
     }
 };
 
+let todos = [];
+
 // toDoList Logic
 const toDoList = function(){
     const li = document.createElement("li");
@@ -41,6 +43,10 @@ const toDoList = function(){
 
             // Delete the element "li"
             li.addEventListener('click', function(){
+               const abstract = this.textContent.split("💣");
+               const indexOfLi = todos.indexOf(abstract[0]);
+               todos.splice(indexOfLi, (indexOfLi + 1));
+               localStorage.setItem("List", JSON.stringify(todos))
                 this.remove();
                 adderNTD();
             });
@@ -67,6 +73,10 @@ const toDoList = function(){
 
             // Delete the element "li"
             li.addEventListener('click', function(){
+                const abstract = this.textContent.split("💣");
+                const indexOfLi = todos.indexOf(abstract[0]);
+                todos.splice(indexOfLi, (indexOfLi + 1));
+                localStorage.setItem("List", JSON.stringify(todos))
                 this.remove();
                 adderNTD();
             });
@@ -88,3 +98,52 @@ const toDoList = function(){
 };
 
 
+add.addEventListener("click", function(){
+
+    input.value !== "" ? todos.push(input.value) : console.log()
+    localStorage.setItem("List", JSON.stringify(todos))
+});
+
+const data = JSON.parse(localStorage.getItem("List"));
+
+
+const getList = function(){
+    JSON.parse(localStorage.getItem("List")).map(a => {
+        document.querySelector("#nothingToDo") ? document.querySelector("#nothingToDo").remove() : console.log();
+        const b = document.createElement("li")
+        b.textContent = a
+        document.querySelector("#list").appendChild(b);
+        b.addEventListener('click', function(){
+            const abstract = this.textContent.split("💣");
+            const indexOfLi = todos.indexOf(abstract[0]);
+            todos.splice(indexOfLi, (indexOfLi + 1));
+            localStorage.setItem("List", JSON.stringify(todos))
+            this.remove();
+            adderNTD();
+        })
+    })
+    const btn = document.createElement("button");
+    btn.textContent = "Refresh Memory"
+    btn.setAttribute("id", "refreshMemory");
+    document.querySelector("main").appendChild(btn);
+    btn.addEventListener("click", function(){
+    localStorage.clear();
+    });
+    btn.addEventListener("click", function(){
+        window.location.reload()
+        this.remove()
+    })
+};
+
+data ? getList() : console.log();
+
+const myFunc = function(){
+    document.querySelectorAll("li").forEach(d => {
+        if(d.textContent !== "There is nothing to do today 😃")
+        todos.push(d.textContent)
+    })
+};
+
+myFunc();
+
+add.addEventListener("click", toDoList);

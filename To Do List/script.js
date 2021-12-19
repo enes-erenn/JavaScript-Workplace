@@ -34,10 +34,11 @@ const toDoList = function(){
     // Checking the input value
     if (input.value !== ""){ // If input value is not blank
 
-        // Checking the "Nothing To Do Element" every time and adding stuff to the list
+        // Add, Delete and Hover
         if(document.querySelector("#nothingToDo")){                         //  If there is "NTD" El
             document.querySelector("#nothingToDo").remove()                 //  Remove the "NTD" El
 
+            // Add the element "li" and "close button"
             li.textContent = input.value;                                   //  Set the "li" el content as input value
             list.appendChild(li);                                           //  Insert the "li" el to the "list"
             closeButton.textContent = "💣";                                 //  Set the "button" el content
@@ -56,97 +57,103 @@ const toDoList = function(){
             });
 
             // Hover Effect
-            li.addEventListener("mouseover", function(){
-                closeButton.style.opacity= 1;
+            li.addEventListener("mouseover", function(){                    // On Hover to the "li" el
+                closeButton.style.opacity= 1;                               // Set the "close button" el opacity as 1
             });
 
             // Hover Effect
-            li.addEventListener("mouseout", function(){
-                closeButton.style.opacity= 0;
+            li.addEventListener("mouseout", function(){                     // While mouse out of the "li" el
+                closeButton.style.opacity= 0;                               // Set the "close button" el opacity as 0
             });
         }
 
-        // Checking the "Nothing To Do" Element" every time and adding stuff to the list
-        else if(!document.querySelector("#nothingToDo")){
-            li.textContent = input.value;
-            list.appendChild(li);
-            closeButton.textContent = "💣";
-            closeButton.style.opacity= 0;
-            li.append(closeButton);
-            input.value = "";
+        // Add, Delete and Hover
+        else if(!document.querySelector("#nothingToDo")){                   //  If there is not "NTD" El
+
+            // Add the element "li" and "close button"
+            li.textContent = input.value;                                   //  Set the "li" el content as input value
+            list.appendChild(li);                                           //  Insert the "li" el to the "list"
+            closeButton.textContent = "💣";                                 //  Set the "button" el content
+            closeButton.style.opacity= 0;                                   //  Set the "button" el style
+            li.append(closeButton);                                         //  Insert the "button" el to the "li" el
+            input.value = "";                                               // Set the input value as blank
 
             // Delete the element "li"
-            li.addEventListener('click', function(){
-                const abstract = this.textContent.split("💣");
-                const indexOfLi = todos.indexOf(abstract[0]);
-                todos.splice(indexOfLi, (indexOfLi + 1));
-                localStorage.setItem("List", JSON.stringify(todos))
-                this.remove();
-                adderNTD();
+            li.addEventListener('click', function(){                        // On click to the "li" el
+                const abstract = this.textContent.split("💣");             // Split the emoji
+                const indexOfLi = todos.indexOf(abstract[0]);               // Find the index number of clicked "li" el    
+                todos.splice(indexOfLi, (indexOfLi + 1));                   // Splice the ends except this index
+                localStorage.setItem("List", JSON.stringify(todos))         // Set current situation to the local storage
+                this.remove();                                              // Remove this el
+                adderNTD();                                                 // Check the "NTD" el
             });
 
             // Hover Effect
-            li.addEventListener("mouseover", function(){
-                closeButton.style.opacity= 1;
+            li.addEventListener("mouseover", function(){                    // On Hover to the "li" el
+                closeButton.style.opacity= 1;                               // Set the "close button" el opacity as 1
             });
 
             // Hover Effect
-            li.addEventListener("mouseout", function(){
-                closeButton.style.opacity= 0;
+            li.addEventListener("mouseout", function(){                     // While mouse out of the "li" el
+                closeButton.style.opacity= 0;                               // Set the "close button" el opacity as 0
             });
         };
 
-    } else{
+    } else{ // If input value is blank
         alert("Please fill in the blank properly.");
     }
 };
 
-
+// Setting local storage by click to the "add button"
 add.addEventListener("click", function(){
-
-    input.value !== "" ? todos.push(input.value) : console.log()
-    localStorage.setItem("List", JSON.stringify(todos))
+    input.value !== "" ? todos.push(input.value) : console.log()            // If input value is not blank, push the input value to the "todos array"
+    localStorage.setItem("List", JSON.stringify(todos))                     // Set the "todos array" to the local storage
 });
 
 const data = JSON.parse(localStorage.getItem("List"));
 
 
+// Getting current list (after the local storage)
 const getList = function(){
-    JSON.parse(localStorage.getItem("List")).map(a => {
+    JSON.parse(localStorage.getItem("List")).map(a => {                     // Get the local storage items
+
+        // If there is "NTD" element, remove
         document.querySelector("#nothingToDo") ? document.querySelector("#nothingToDo").remove() : console.log();
-        const b = document.createElement("li")
-        b.textContent = a
-        document.querySelector("#list").appendChild(b);
-        b.addEventListener('click', function(){
-            const abstract = this.textContent.split("💣");
-            const indexOfLi = todos.indexOf(abstract[0]);
-            todos.splice(indexOfLi, (indexOfLi + 1));
-            localStorage.setItem("List", JSON.stringify(todos))
-            this.remove();
-            adderNTD();
-        })
+        const b = document.createElement("li");                             // Create "li" el
+        b.textContent = a;                                                  // Set the "li" el content as input value
+        document.querySelector("#list").appendChild(b);                     // Insert this "li" el into the "list" el
+
+        b.addEventListener('click', function(){                             // On click to the "li" el
+            const separate = this.textContent.split("💣");                  // Separate the emoji from the text 
+            const indexOfLi = todos.indexOf(separate[0]);                   // Select the pure text and find the index number
+            todos.splice(indexOfLi, (indexOfLi + 1));                       // Splice again except stuff between ends
+            localStorage.setItem("List", JSON.stringify(todos));            // Set to the local storage the current "todos array"
+            this.remove();                                                  // Remove this "li" el
+            adderNTD();                                                     // Check the "NTD"
+        });
     });
 
-    const btn = document.createElement("button");  // Create the "button" el
-    btn.textContent = "Refresh Memory" // Set the content of the "button"
-    btn.setAttribute("id", "refreshMemory"); // Set the Attribute to the "button"
-    document.querySelector("main").appendChild(btn);  // Insert the "button" el to the main
-    btn.addEventListener("click", function(){ // On click to the button
-    localStorage.clear(); // Clear memory
+    const btn = document.createElement("button");                           // Create the "button" el
+    btn.textContent = "Refresh Memory"                                      // Set the content of the "button"
+    btn.setAttribute("id", "refreshMemory");                                // Set the Attribute to the "button"
+    document.querySelector("main").appendChild(btn);                        // Insert the "button" el to the main
+    btn.addEventListener("click", function(){                               // On click to the button
+    localStorage.clear();                                                   // Clear memory (local storage)
     });
-    btn.addEventListener("click", function(){
-        window.location.reload()
-        this.remove()
+
+    btn.addEventListener("click", function(){                               // On click to the new button
+        window.location.reload()                                            // Reload the page
+        this.remove()                                                       // Remove this "button" el
     });
 };
 
-data ? getList() : console.log();
+data ? getList() : console.log();                                           // Run the getList() if there is data
 
 const myFunc = function(){
-    document.querySelectorAll("li").forEach(d => {
-        if(d.textContent !== "There is nothing to do today 😃")
-        todos.push(d.textContent)
-    })
+    document.querySelectorAll("li").forEach(d => {                          // Select all of the "li" elements
+        if(d.textContent !== "There is nothing to do today 😃")            // If content of the "li" elements is not "NTD"
+        todos.push(d.textContent)                                          // Push the content to the "todos array"
+    });
 };
 
 myFunc();

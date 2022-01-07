@@ -127,6 +127,15 @@ const toDoList = function () {
 
 // Setting local storage by click to the "add button"
 add.addEventListener("click", function () {
+  const oneCharacters = [];
+  const str = input.value;
+  for (let i = 0; i < str.length; i++) {
+    const letters = str.charAt(i);
+    oneCharacters.push(letters);
+  }
+  const unique = Array.from(new Set(oneCharacters));
+  const safeInput = unique.length > 2 ? true : false;
+  
   input.value !== "" && safeInput === true ? todos.push(input.value) : console.log(); // If input value is not blank, push the input value to the "todos array"
   localStorage.setItem("List", JSON.stringify(todos)); // Set the "todos array" to the local storage
 });

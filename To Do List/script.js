@@ -64,7 +64,7 @@ const toDoList = function () {
         // On click to the "li" el
         const abstract = this.textContent.split("💣"); // Split the emoji
         const indexOfLi = todos.indexOf(abstract[0]); // Find the index number of clicked "li" el
-        todos.splice(indexOfLi, indexOfLi + 1); // Splice the ends except this index
+        todos.splice(indexOfLi, 1); // Splice the ends except this index
         localStorage.setItem("List", JSON.stringify(todos)); // Set current situation to the local storage
         this.remove(); // Remove this el
         adderNTD(); // Check the "NTD" el
@@ -100,7 +100,7 @@ const toDoList = function () {
         // On click to the "li" el
         const abstract = this.textContent.split("💣"); // Split the emoji
         const indexOfLi = todos.indexOf(abstract[0]); // Find the index number of clicked "li" el
-        todos.splice(indexOfLi, indexOfLi + 1); // Splice the ends except this index
+        todos.splice(indexOfLi, 1); // Splice the ends except this index
         localStorage.setItem("List", JSON.stringify(todos)); // Set current situation to the local storage
         this.remove(); // Remove this el
         adderNTD(); // Check the "NTD" el
@@ -135,8 +135,10 @@ add.addEventListener("click", function () {
   }
   const unique = Array.from(new Set(oneCharacters));
   const safeInput = unique.length > 2 ? true : false;
-  
-  input.value !== "" && safeInput === true ? todos.push(input.value) : console.log(); // If input value is not blank, push the input value to the "todos array"
+
+  input.value !== "" && safeInput === true
+    ? todos.push(input.value)
+    : console.log(); // If input value is not blank, push the input value to the "todos array"
   localStorage.setItem("List", JSON.stringify(todos)); // Set the "todos array" to the local storage
 });
 
@@ -159,28 +161,29 @@ const getList = function () {
       // On click to the "li" el
       const separate = this.textContent.split("💣"); // Separate the emoji from the text
       const indexOfLi = todos.indexOf(separate[0]); // Select the pure text and find the index number
-      todos.splice(indexOfLi, indexOfLi + 1); // Splice again except stuff between ends
+      todos.splice(indexOfLi, 1); // Splice the ends except this index
       localStorage.setItem("List", JSON.stringify(todos)); // Set to the local storage the current "todos array"
       this.remove(); // Remove this "li" el
       adderNTD(); // Check the "NTD"
     });
   });
 
-  const btn = document.createElement("button"); // Create the "button" el
-  btn.textContent = "Refresh Memory"; // Set the content of the "button"
-  btn.setAttribute("id", "refreshMemory"); // Set the Attribute to the "button"
-  document.querySelector("main").appendChild(btn); // Insert the "button" el to the main
-  btn.addEventListener("click", function () {
-    // On click to the button
-    localStorage.clear(); // Clear memory (local storage)
-  });
-
-  btn.addEventListener("click", function () {
-    // On click to the new button
-    window.location.reload(); // Reload the page
-    this.remove(); // Remove this "button" el
-  });
 };
+
+const btn = document.createElement("button"); // Create the "button" el
+btn.textContent = "Clear All"; // Set the content of the "button"
+btn.setAttribute("id", "clear-all"); // Set the Attribute to the "button"
+document.querySelector("main").appendChild(btn); // Insert the "button" el to the main
+btn.addEventListener("click", function () {
+  // On click to the button
+  localStorage.clear(); // Clear memory (local storage)
+});
+
+btn.addEventListener("click", function () {
+  // On click to the new button
+  window.location.reload(); // Reload the page
+  this.remove(); // Remove this "button" el
+});
 
 data ? getList() : console.log(); // Run the getList() if there is data
 

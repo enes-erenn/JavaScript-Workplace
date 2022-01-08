@@ -16,7 +16,7 @@ body {
   height: 100vh;
   position: relative;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   background: linear-gradient(to top left, #28b487, #7dd56f);
 }
@@ -53,8 +53,6 @@ p {
   font-size: 1.8rem;
 }
 
-/* -------------------------- */
-/* CLASSES TO MAKE MODAL WORK */
 .hidden {
   display: none;
 }
@@ -65,7 +63,6 @@ p {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 70%;
-
   background-color: white;
   padding: 6rem;
   border-radius: 5px;
@@ -82,4 +79,26 @@ p {
   background-color: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(3px);
   z-index: 5;
+}
+
+@media only screen and (max-width: 500px){
+  .modal {
+    width: 80%;
+    padding: 3rem;
+  }
+
+  .close-modal {
+    position: absolute;
+    top: 6px;
+    right: 1rem;
+    font-size: 4rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1.5rem;
+  }
 }

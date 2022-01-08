@@ -165,12 +165,16 @@ h6 {
   }
 
   main {
-    width: 70%;
+    width: 80%;
     margin-top: 10%;
     font-size: 14px;
   }
 
   img {
     width: 3rem;
+  }
+
+  #clear-all {
+    width: 5rem;
   }
 }

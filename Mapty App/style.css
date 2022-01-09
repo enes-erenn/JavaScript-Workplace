@@ -13,6 +13,7 @@
   margin: 0;
   padding: 0;
   box-sizing: inherit;
+  user-select: none;
 }
 
 html {
@@ -21,7 +22,7 @@ html {
 }
 
 body {
-  font-family: 'Manrope', sans-serif;
+  font-family: "Manrope", sans-serif;
   color: var(--color-light--2);
   font-weight: 400;
   line-height: 1.6;
@@ -32,6 +33,33 @@ body {
   padding: 2.5rem;
 
   display: flex;
+}
+
+.container_delete-all {
+  width: 100%;
+  padding: 1rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.btn_delete-all {
+  width: 30%;
+  height: 3rem;
+  border-radius: 10px;
+  border: none;
+  transition: all 0.2s ease;
+  color: #eee;
+  background-color: rgb(187, 88, 70);
+}
+
+.btn_delete-all:hover {
+  background-color: rgb(250, 219, 219);
+  color: black;
+}
+
+.btn_delete-all:active {
+  outline: solid 1px black;
 }
 
 /* GENERAL */
@@ -143,6 +171,10 @@ a:visited {
 
 .form__row--hidden {
   display: none;
+}
+
+.hidden {
+  opacity: 0;
 }
 
 .form__label {

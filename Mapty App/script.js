@@ -8,6 +8,8 @@ const inputDuration = document.querySelector(".form__input--duration");
 const inputCadence = document.querySelector(".form__input--cadence");
 const inputElevation = document.querySelector(".form__input--elevation");
 const btn_delete = document.querySelector(".btn_delete-all");
+const btn_addMov = document.querySelector(".container_add-new-workout");
+const map_div = document.querySelector("#map");
 
 let map, mapEvent;
 
@@ -91,6 +93,8 @@ class App {
     this.btn_Delete_LocalStorage();
     this._getPosition();
     this._getLocalStorage();
+    this.after_alert();
+    this.btn_Add_New_Mov();
     form.addEventListener("submit", this._newWorkout.bind(this));
     inputType.addEventListener("change", this._toggleElevationField);
     containerWorkouts.addEventListener("click", this._moveToPopup.bind(this));
@@ -302,6 +306,36 @@ class App {
 
     btn_delete.addEventListener("click", () => {
       this.reset();
+    });
+  }
+
+  btn_Add_New_Mov() {
+    btn_addMov.addEventListener("click", () => {
+      map_div.style.border = "3px dotted tomato";
+
+      const alertFunc = () => {
+        const alert = document.createElement("li");
+        const alertText = document.createTextNode(
+          "Please select a location on the map."
+        );
+        alert.classList.add("alert");
+        alert.appendChild(alertText);
+        containerWorkouts.appendChild(alert);
+        setTimeout(() => {
+          alert.remove();
+        }, 1000);
+      };
+
+      const isAlertExist =
+        document.getElementsByClassName("alert").length > 0 ? true : false;
+      isAlertExist === false ? alertFunc() : console.log();
+    });
+  }
+
+  after_alert() {
+    map_div.addEventListener("click", () => {
+      map_div.style.border = "none";
+      btn_addMov.classList.add("hidden");
     });
   }
 

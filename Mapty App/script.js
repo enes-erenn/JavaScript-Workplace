@@ -52,7 +52,7 @@ class Running extends Workout {
   constructor(coords, distance, duration, cadence) {
     super(coords, distance, duration);
     this.cadence = cadence;
-    this.type = "running;";
+    this.type = "running";
     this.calcPace();
     this._setDescription();
   }

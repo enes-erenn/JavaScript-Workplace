@@ -15,8 +15,9 @@ let map, mapEvent;
 
 class Workout {
   date = new Date();
-  id = (new Date() + "").slice(-10);
+  id = (Date.now() + "").slice(-10);
   clicks = 0;
+
   constructor(coords, distance, duration) {
     this.coords = coords;
     this.distance = distance;
@@ -38,21 +39,22 @@ class Workout {
       "November",
       "December",
     ];
+
     this.description = `${this.type[0].toUpperCase()}${this.type.slice(1)} on 
         ${months[this.date.getMonth()]} ${this.date.getDate()}`;
   }
 
   click() {
-    this.click++;
+    this.clicks++;
   }
 }
 
 class Running extends Workout {
   type = "running";
+
   constructor(coords, distance, duration, cadence) {
     super(coords, distance, duration);
     this.cadence = cadence;
-    this.type = "running";
     this.calcPace();
     this._setDescription();
   }
@@ -159,6 +161,7 @@ class App {
     const validInputs = (...inputs) =>
       inputs.every((inp) => Number.isFinite(inp));
     const allPositive = (...inputs) => inputs.every((inp) => inp > 0);
+
     const type = inputType.value;
     const distance = +inputDistance.value;
     const duration = +inputDuration.value;
@@ -167,6 +170,7 @@ class App {
 
     if (type === "running") {
       const cadence = +inputCadence.value;
+
       if (
         !validInputs(distance, duration, cadence) ||
         !allPositive(distance, duration, cadence)
@@ -216,21 +220,21 @@ class App {
             <li class="workout workout--${workout.type}" data-id="${
       workout.id
     }">
-                <h2 class="workout__title">${workout.description}</h2>
-                <div class="workout__details">
-                    <span class="workout__icon">${
-                      workout.type === "running" ? "🏃" : "🚴‍♀️"
-                    }</span>
-                    <span class="workout__value">${workout.distance}</span>
-                    <span class="workout__unit">km</span>
-                </div>
-                <div class="workout__details">
-                    <span class="workout__icon">⏱</span>
-                    <span class="workout__value">${workout.duration}</span>
-                    <span class="workout__unit">min</span>
-                </div>
-          
+              <h2 class="workout__title">${workout.description}</h2>
+              <div class="workout__details">
+                <span class="workout__icon">${
+                  workout.type === "running" ? "🏃" : "🚴‍♀️"
+                }</span>
+                <span class="workout__value">${workout.distance}</span>
+                <span class="workout__unit">km</span>
+              </div>
+              <div class="workout__details">
+                <span class="workout__icon">⏱</span>
+                <span class="workout__value">${workout.duration}</span>
+                <span class="workout__unit">min</span>
+              </div>
             `;
+
     if (workout.type === "running")
       html += `
                 <div class="workout__details">
@@ -278,10 +282,14 @@ class App {
       (work) => work.id === workoutEl.dataset.id
     );
 
+    console.log(
+      this.#workouts.find((work) => work.id === workoutEl.dataset.id)
+    );
+
     this.#map.setView(workout.coords, this.#mapZoomLevel, {
       animate: true,
       pan: {
-        duration: 1,
+        duration: 0.5,
       },
     });
     //workout.click();

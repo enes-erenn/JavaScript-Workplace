@@ -134,7 +134,7 @@ class App {
     this.#mapEvent = mapE;
     form.classList.remove("hidden");
     inputDistance.focus();
-    if (btn_addMov.style.opacity == 1) btn_addMov.style.opacity = 0;
+    if (btn_addMov.style.display === "flex") btn_addMov.style.display = "none";
   }
 
   _hideForm() {
@@ -314,9 +314,9 @@ class App {
 
   checker_Add_Btn() {
     if (document.getElementsByClassName("workout").length > 0) {
-      btn_addMov.style.opacity = 0;
+      btn_addMov.style.display = "none";
     } else {
-      btn_addMov.style.opacity = 1;
+      btn_addMov.style.display = "flex";
     }
   }
 

@@ -85,7 +85,7 @@ console.log(running1, cycling1); */
 
 class App {
   #map;
-  #mapZoomLevel = 13;
+  #mapZoomLevel = 15;
   #mapEvent;
   #workouts = [];
 
@@ -134,7 +134,7 @@ class App {
     this.#mapEvent = mapE;
     form.classList.remove("hidden");
     inputDistance.focus();
-    btn_addMov.style.opacity = 0;
+    if (btn_addMov.style.opacity == 1) btn_addMov.style.opacity = 0;
   }
 
   _hideForm() {
@@ -339,7 +339,7 @@ class App {
 
       const isAlertExist =
         document.getElementsByClassName("alert").length > 0 ? true : false;
-      isAlertExist === false ? alertFunc() : console.log();
+      if (Boolean(isAlertExist) === false) alertFunc();
     });
   }
 

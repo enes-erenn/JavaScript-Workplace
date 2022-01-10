@@ -93,6 +93,7 @@ class App {
     this.btn_Delete_LocalStorage();
     this._getPosition();
     this._getLocalStorage();
+    this.checker_Add_Btn();
     this.after_alert();
     this.btn_Add_New_Mov();
     form.addEventListener("submit", this._newWorkout.bind(this));
@@ -133,6 +134,7 @@ class App {
     this.#mapEvent = mapE;
     form.classList.remove("hidden");
     inputDistance.focus();
+    btn_addMov.style.opacity = 0;
   }
 
   _hideForm() {
@@ -262,6 +264,7 @@ class App {
             </li>
             `;
     form.insertAdjacentHTML("afterend", html);
+    this.checker_Add_Btn();
   }
 
   _moveToPopup(e) {
@@ -307,6 +310,14 @@ class App {
     btn_delete.addEventListener("click", () => {
       this.reset();
     });
+  }
+
+  checker_Add_Btn() {
+    if (document.getElementsByClassName("workout").length > 0) {
+      btn_addMov.style.opacity = 0;
+    } else {
+      btn_addMov.style.opacity = 1;
+    }
   }
 
   btn_Add_New_Mov() {

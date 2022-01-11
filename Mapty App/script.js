@@ -353,7 +353,12 @@ class App {
 
   after_alert() {
     map_div.addEventListener("click", () => {
-      map_div.style.border = "none";
+      if (
+        Boolean(
+          document.querySelector("body").hasClass("leaflet-dragging") == false
+        )
+      )
+        map_div.style.border = "none";
       btn_addMov.classList.add("hidden");
     });
   }

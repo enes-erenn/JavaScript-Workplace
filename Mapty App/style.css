@@ -95,13 +95,14 @@ a:visited {
   background-color: var(--color-dark--2);
   border-radius: 5px;
   padding: 1.5rem 2.25rem;
+  padding-right: 1rem;
   margin-bottom: 1.75rem;
   cursor: pointer;
-
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 3fr 1fr;
   gap: 0.75rem 1.5rem;
 }
+
 .workout--running {
   border-left: 5px solid var(--color-brand--2);
 }
@@ -143,7 +144,6 @@ a:visited {
   border-radius: 5px;
   padding: 1.5rem 2.75rem;
   margin-bottom: 1.75rem;
-
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.5rem 2.5rem;
@@ -279,4 +279,49 @@ a:visited {
 }
 .cycling-popup .leaflet-popup-content-wrapper {
   border-left: 5px solid var(--color-brand--1);
+}
+
+.workout-btns {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  color: #eee;
+  opacity: 0.1;
+  transition: all 0.3s ease;
+}
+
+.workout-btns:hover {
+  opacity: 1;
+}
+.btn_workout-delete {
+  width: 100%;
+  height: 30%;
+  padding: 1rem;
+  background: transparent;
+  border: solid 1px #eee;
+  color: #eee;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.btn_workout-edit {
+  width: 100%;
+  height: 30%;
+  padding: 1rem;
+  background: transparent;
+  border: solid 1px #eee;
+  color: #eee;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.btn_workout-delete:hover {
+  background-color: #e63946;
+}
+
+.btn_workout-edit:hover {
+  background-color: #ee9b00;
 }

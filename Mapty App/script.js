@@ -7,9 +7,10 @@ const inputDistance = document.querySelector(".form__input--distance");
 const inputDuration = document.querySelector(".form__input--duration");
 const inputCadence = document.querySelector(".form__input--cadence");
 const inputElevation = document.querySelector(".form__input--elevation");
-const btn_delete = document.querySelector(".btn_delete-all");
+const btn_deleteAll = document.querySelector(".btn_delete-all");
 const btn_addMov = document.querySelector(".container_add-new-workout");
 const map_div = document.querySelector("#map");
+const btn_delete = document.querySelector(".btn_workout-delete");
 
 let map, mapEvent;
 
@@ -220,8 +221,9 @@ class App {
             <li class="workout workout--${workout.type}" data-id="${
       workout.id
     }">
-              <h2 class="workout__title">${workout.description}</h2>
-              <div class="workout__details">
+    <div>
+    <h2 class="workout__title">${workout.description}</h2>
+    <div class="workout__details">
                 <span class="workout__icon">${
                   workout.type === "running" ? "🏃" : "🚴‍♀️"
                 }</span>
@@ -249,6 +251,11 @@ class App {
                     <span class="workout__value">${workout.cadence}</span>
                     <span class="workout__unit">spm</span>
                 </div>
+                </div>
+                <div class="workout-btns hidden">
+                  <button class="btn_workout-delete">Delete</button>
+                  <button class="btn_workout-edit">Edit</button>
+                </div>
             </li>
             `;
     if (workout.type === "cycling")
@@ -265,10 +272,29 @@ class App {
                     <span class="workout__value">${workout.elevationGain}</span>
                     <span class="workout__unit">m</span>
                 </div>
+                </div>
+                <div class="workout-btns hidden">
+                  <button class="btn_workout-delete">Delete</button>
+                  <button class="btn_workout-edit">Edit</button>
+                </div>
             </li>
             `;
     form.insertAdjacentHTML("afterend", html);
     this.checker_Add_Btn();
+    document
+      .querySelector(".btn_workout-delete")
+      .addEventListener("click", (e) => {
+        document
+          .querySelector(".btn_workout-delete")
+          .parentElement.parentElement.remove();
+        const data_id = e.target.closest(".workout").getAttribute("data-id");
+        const indexNum = this.#workouts
+          .map((workout) => workout.id)
+          .indexOf(data_id);
+        this.#workouts.splice(indexNum, 1);
+        this._setLocalStorage();
+        location.reload();
+      });
   }
 
   _moveToPopup(e) {
@@ -280,10 +306,6 @@ class App {
 
     const workout = this.#workouts.find(
       (work) => work.id === workoutEl.dataset.id
-    );
-
-    console.log(
-      this.#workouts.find((work) => work.id === workoutEl.dataset.id)
     );
 
     this.#map.setView(workout.coords, this.#mapZoomLevel, {
@@ -312,10 +334,10 @@ class App {
 
   btn_Delete_LocalStorage() {
     this.#workouts.length > 0
-      ? btn_delete.classList.remove("hidden")
-      : btn_delete.classList.add("hidden");
+      ? btn_deleteAll.classList.remove("hidden")
+      : btn_deleteAll.classList.add("hidden");
 
-    btn_delete.addEventListener("click", () => {
+    btn_deleteAll.addEventListener("click", () => {
       this.reset();
     });
   }
@@ -353,13 +375,10 @@ class App {
 
   after_alert() {
     map_div.addEventListener("click", () => {
-      if (
-        Boolean(
-          document.querySelector("body").hasClass("leaflet-dragging") == false
-        )
-      )
+      if (!document.getElementsByClassName("leaflet-dragging")) {
         map_div.style.border = "none";
-      btn_addMov.classList.add("hidden");
+        btn_addMov.classList.add("hidden");
+      }
     });
   }
 

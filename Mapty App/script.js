@@ -221,18 +221,18 @@ class App {
             <li class="workout workout--${workout.type}" data-id="${
       workout.id
     }">
-    <div>
+    <div class="workout-details">
     <h2 class="workout__title">${workout.description}</h2>
     <div class="workout__details">
                 <span class="workout__icon">${
                   workout.type === "running" ? "🏃" : "🚴‍♀️"
                 }</span>
-                <span class="workout__value">${workout.distance}</span>
+                <span class="workout__value distance">${workout.distance}</span>
                 <span class="workout__unit">km</span>
               </div>
               <div class="workout__details">
                 <span class="workout__icon">⏱</span>
-                <span class="workout__value">${workout.duration}</span>
+                <span class="workout__value duration">${workout.duration}</span>
                 <span class="workout__unit">min</span>
               </div>
             `;
@@ -241,14 +241,16 @@ class App {
       html += `
                 <div class="workout__details">
                     <span class="workout__icon">⚡️</span>
-                    <span class="workout__value">${workout.pace.toFixed(
+                    <span class="workout__value pace">${workout.pace.toFixed(
                       1
                     )}</span>
                     <span class="workout__unit">min/km</span>
                 </div>
                 <div class="workout__details">
                     <span class="workout__icon">🦶🏼</span>
-                    <span class="workout__value">${workout.cadence}</span>
+                    <span class="workout__value cadence">${
+                      workout.cadence
+                    }</span>
                     <span class="workout__unit">spm</span>
                 </div>
                 </div>
@@ -262,14 +264,16 @@ class App {
       html += `
                 <div class="workout__details">
                     <span class="workout__icon">⚡️</span>
-                    <span class="workout__value">${workout.speed.toFixed(
+                    <span class="workout__value speed">${workout.speed.toFixed(
                       1
                     )}</span>
                     <span class="workout__unit">km/h</span>
                 </div>
                 <div class="workout__details">
                     <span class="workout__icon">⛰</span>
-                    <span class="workout__value">${workout.elevationGain}</span>
+                    <span class="workout__value elevationGain">${
+                      workout.elevationGain
+                    }</span>
                     <span class="workout__unit">m</span>
                 </div>
                 </div>
@@ -294,6 +298,108 @@ class App {
         this.#workouts.splice(indexNum, 1);
         this._setLocalStorage();
         location.reload();
+      });
+
+    document
+      .querySelector(".btn_workout-edit")
+      .addEventListener("click", (e) => {
+        const data_id = e.target.closest(".workout").getAttribute("data-id");
+        const indexNum = this.#workouts
+          .map((workout) => workout.id)
+          .indexOf(data_id);
+        if (
+          !e.target.closest(".workout").querySelector(".input-edit__distance")
+        ) {
+          e.target.closest(".workout").querySelector(".distance")[
+            "outerHTML"
+          ] = `<input type=number class="input-edit__distance" value=${workout.distance} />`;
+
+          e.target.closest(".workout").querySelector(".duration")[
+            "outerHTML"
+          ] = `<input type=number class="input-edit__duration" value=${workout.duration} />`;
+          if (e.target.closest(".workout").querySelector(".cadence")) {
+            e.target.closest(".workout").querySelector(".cadence")[
+              "outerHTML"
+            ] = `<input type=number class="input-edit__cadence" value=${workout.cadence} />`;
+          } else {
+            e.target.closest(".workout").querySelector(".elevationGain")[
+              "outerHTML"
+            ] = `<input type=number class="input-edit__elevationGain" value=${workout.elevationGain} />`;
+          }
+
+          e.target.closest(".btn_workout-edit").textContent = "✔";
+        } else {
+          this.#workouts[indexNum]["distance"] = e.target
+            .closest(".workout")
+            .querySelector(".input-edit__distance").value;
+          e.target.closest(".workout").querySelector(".input-edit__distance")[
+            "outerHTML"
+          ] = `
+            <span class="workout__value distance">${
+              e.target
+                .closest(".workout")
+                .querySelector(".input-edit__distance").value
+            }</span>
+            `;
+
+          this.#workouts[indexNum]["duration"] = e.target
+            .closest(".workout")
+            .querySelector(".input-edit__duration").value;
+          e.target.closest(".workout").querySelector(".input-edit__duration")[
+            "outerHTML"
+          ] = `
+            <span class="workout__value duration">${
+              e.target
+                .closest(".workout")
+                .querySelector(".input-edit__duration").value
+            }</span>
+            `;
+
+          if (
+            e.target.closest(".workout").querySelector(".input-edit__cadence")
+          ) {
+            this.#workouts[indexNum]["cadence"] = e.target
+              .closest(".workout")
+              .querySelector(".input-edit__cadence").value;
+            e.target.closest(".workout").querySelector(".input-edit__cadence")[
+              "outerHTML"
+            ] = `
+                <span class="workout__value cadence">${workout.cadence}</span>
+                `;
+
+            this.#workouts[indexNum]["pace"] =
+              this.#workouts[indexNum]["duration"] /
+              this.#workouts[indexNum]["distance"];
+
+            e.target.closest(".workout").querySelector(".pace")["outerHTML"] = `
+            <span class="workout__value pace">${workout.pace.toFixed(1)}</span>
+                `;
+          } else {
+            this.#workouts[indexNum]["elevationGain"] = e.target
+              .closest(".workout")
+              .querySelector(".input-edit__elevationGain").value;
+            e.target
+              .closest(".workout")
+              .querySelector(".input-edit__elevationGain")["outerHTML"] = `
+                <span class="workout__value elevationGain">${workout.elevationGain}</span>
+                `;
+
+            this.#workouts[indexNum]["speed"] =
+              this.#workouts[indexNum]["distance"] /
+              (this.#workouts[indexNum]["duration"] / 60);
+
+            e.target.closest(".workout").querySelector(".speed")[
+              "outerHTML"
+            ] = `
+                <span class="workout__value speed">${workout.speed.toFixed(
+                  1
+                )}</span>
+                `;
+          }
+          e.target.closest(".btn_workout-edit").textContent = "Edit";
+          this._setLocalStorage();
+          console.log(this.#workouts);
+        }
       });
   }
 

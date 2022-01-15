@@ -325,3 +325,11 @@ a:visited {
 .btn_workout-edit:hover {
   background-color: #ee9b00;
 }
+
+.input-edit__distance,
+.input-edit__duration,
+.input-edit__cadence,
+.input-edit__elevationGain {
+  width: 5rem;
+  margin: 0 1rem;
+}

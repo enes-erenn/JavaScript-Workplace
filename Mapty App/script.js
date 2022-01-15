@@ -11,6 +11,8 @@ const btn_deleteAll = document.querySelector(".btn_delete-all");
 const btn_addMov = document.querySelector(".container_add-new-workout");
 const map_div = document.querySelector("#map");
 const btn_delete = document.querySelector(".btn_workout-delete");
+const form_btn_ok = document.querySelector(".form__btn-ok");
+const form_btn_cancel = document.querySelector(".form__btn-cancel");
 
 let map, mapEvent;
 
@@ -99,7 +101,7 @@ class App {
     this.checker_Add_Btn();
     this.after_alert();
     this.btn_Add_New_Mov();
-    form.addEventListener("submit", this._newWorkout.bind(this));
+    form_btn_ok.addEventListener("click", this._newWorkout.bind(this));
     inputType.addEventListener("change", this._toggleElevationField);
     containerWorkouts.addEventListener("click", this._moveToPopup.bind(this));
   }
@@ -126,7 +128,7 @@ class App {
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(this.#map);
 
-    this.#map.on("click", this._showForm.bind(this));
+    this.#map.addEventListener("click", this._showForm.bind(this));
 
     this.#workouts.forEach((work) => {
       this._renderWorkoutMarker(work);
@@ -138,6 +140,35 @@ class App {
     form.classList.remove("hidden");
     inputDistance.focus();
     if (btn_addMov.style.display === "flex") btn_addMov.style.display = "none";
+    document.querySelector(".sidebar");
+
+    form_btn_ok.addEventListener("mouseover", () => {
+      form_btn_ok.style.transitionDuration = "0.2s";
+      form_btn_ok.style.transform = "scale(1.1)";
+    });
+
+    form_btn_ok.addEventListener("mouseout", () => {
+      form_btn_ok.style.transform = "scale(1)";
+    });
+
+    form_btn_ok.addEventListener("click", () => {
+      console.log("eağ");
+    });
+
+    form_btn_cancel.addEventListener("mouseover", () => {
+      form_btn_cancel.style.transitionDuration = "0.2s";
+      form_btn_cancel.style.transform = "scale(1.1)";
+    });
+
+    form_btn_cancel.addEventListener("mouseout", () => {
+      form_btn_cancel.style.transform = "scale(1)";
+    });
+
+    form_btn_cancel.addEventListener("click", (e) => {
+      e.preventDefault();
+      this._hideForm();
+      this.checker_Add_Btn();
+    });
   }
 
   _hideForm() {
@@ -146,9 +177,8 @@ class App {
       inputCadence.value =
       inputElevation.value =
         "";
-    form.style.display = "none";
+    form.style.display = "grid";
     form.classList.add("hidden");
-    setTimeout(() => (form.style.display = "grid"), 1000);
   }
 
   _toggleElevationField() {

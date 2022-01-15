@@ -43,8 +43,9 @@ class Workout {
       "December",
     ];
 
-    this.description = `${this.type[0].toUpperCase()}${this.type.slice(1)} on 
-        ${months[this.date.getMonth()]} ${this.date.getDate()}`;
+    this.description = `${this.type[0].toUpperCase()}${this.type.slice(1)} on ${
+      months[this.date.getMonth()]
+    } ${this.date.getDate()}`;
   }
 
   click() {
@@ -151,9 +152,7 @@ class App {
       form_btn_ok.style.transform = "scale(1)";
     });
 
-    form_btn_ok.addEventListener("click", () => {
-      console.log("eağ");
-    });
+    form_btn_ok.addEventListener("click", () => {});
 
     form_btn_cancel.addEventListener("mouseover", () => {
       form_btn_cancel.style.transitionDuration = "0.2s";
@@ -206,7 +205,7 @@ class App {
         !validInputs(distance, duration, cadence) ||
         !allPositive(distance, duration, cadence)
       )
-        return alert("Inputs have to be positive numbers!");
+        return alert("Please fill in the blanks properly.");
       workout = new Running([lat, lng], distance, duration, cadence);
     }
 
@@ -216,7 +215,7 @@ class App {
         !validInputs(distance, duration, elevation) ||
         !allPositive(distance, duration, elevation)
       )
-        return alert("Inputs have to be positive numbers!");
+        return alert("Please fill in the blanks properly.");
       workout = new Cycling([lat, lng], distance, duration, elevation);
     }
 
@@ -252,7 +251,7 @@ class App {
       workout.id
     }">
     <div class="workout-details">
-    <h2 class="workout__title">${workout.description}</h2>
+    <h2 class="workout__title title">${workout.description}</h2>
     <div class="workout__details">
                 <span class="workout__icon">${
                   workout.type === "running" ? "🏃" : "🚴‍♀️"
@@ -337,9 +336,14 @@ class App {
         const indexNum = this.#workouts
           .map((workout) => workout.id)
           .indexOf(data_id);
+        console.log(this.#workouts);
         if (
           !e.target.closest(".workout").querySelector(".input-edit__distance")
         ) {
+          e.target.closest(".workout").querySelector(".workout__title")[
+            "outerHTML"
+          ] = `<input type=text class="input-edit__title" value=${workout.description} />`;
+
           e.target.closest(".workout").querySelector(".distance")[
             "outerHTML"
           ] = `<input type=number class="input-edit__distance" value=${workout.distance} />`;
@@ -359,6 +363,13 @@ class App {
 
           e.target.closest(".btn_workout-edit").textContent = "✔";
         } else {
+          this.#workouts[indexNum]["description"] = e.target
+            .closest(".workout")
+            .querySelector(".input-edit__title").value;
+          e.target.closest(".workout").querySelector(".input-edit__title")[
+            "outerHTML"
+          ] = `<h2 class="workout__title">${workout.description}</h2>`;
+
           this.#workouts[indexNum]["distance"] = e.target
             .closest(".workout")
             .querySelector(".input-edit__distance").value;

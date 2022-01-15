@@ -398,7 +398,6 @@ class App {
           }
           e.target.closest(".btn_workout-edit").textContent = "Edit";
           this._setLocalStorage();
-          console.log(this.#workouts);
         }
       });
   }
@@ -481,8 +480,8 @@ class App {
 
   after_alert() {
     map_div.addEventListener("click", () => {
+      map_div.style.border = "none";
       if (!document.getElementsByClassName("leaflet-dragging")) {
-        map_div.style.border = "none";
         btn_addMov.classList.add("hidden");
       }
     });

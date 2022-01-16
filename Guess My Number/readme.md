@@ -1,7 +1,4 @@
-<h1 align="center">Guess My Number</h1>
-<h3 align="center">This is a JavaScript Challenge that I made to improve my JS knowledge.</h3>
-<p align="center">This project has responsive design.</p>
-
+# Codepen:<a href="https://codepen.io/thenesern/pen/mdMQrwZ" target="_blank"> Guess My Number</a>
 ---
 
 <h4 align="center">1280x800 Screen Size</h4>

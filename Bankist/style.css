@@ -26,7 +26,7 @@ html {
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 300;
   color: #444;
   line-height: 1.9;
@@ -37,7 +37,6 @@ body {
 .section {
   padding: 15rem 3rem;
   border-top: 1px solid #ddd;
-
   transition: transform 1s, opacity 1s;
 }
 
@@ -78,7 +77,21 @@ body {
   transition: all 0.3s;
 }
 
-.btn:hover {
+.btn--close-cookie {
+  display: inline-block;
+  background-color: var(--color-primary);
+  font-size: 1.6rem;
+  font-family: inherit;
+  font-weight: 500;
+  border: none;
+  padding: 1px 2rem;
+  border-radius: 10rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn:hover,
+.btn--close-cookie:hover {
   background-color: var(--color-primary-darker);
 }
 
@@ -172,7 +185,7 @@ img {
 
 /* HEADER */
 .header {
-  padding: 0 3rem;
+  padding: 0 5rem;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -181,14 +194,12 @@ img {
 
 .header__title {
   flex: 1;
-
   max-width: 115rem;
   display: grid;
   grid-template-columns: 3fr 2fr;
   row-gap: 3rem;
   align-content: center;
   justify-content: center;
-
   align-items: start;
   justify-items: start;
 }
@@ -216,7 +227,7 @@ h4 {
 
 .highlight::after {
   display: block;
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -233,6 +244,7 @@ h4 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
+  align-items: center;
   margin: 0 12rem;
 }
 
@@ -273,7 +285,6 @@ h4 {
 .operations {
   max-width: 100rem;
   margin: 12rem auto 0 auto;
-
   background-color: #fff;
 }
 
@@ -470,7 +481,7 @@ h4 {
 }
 
 .testimonial::before {
-  content: '\201C';
+  content: "\201C";
   position: absolute;
   top: -5.7rem;
   left: -6.8rem;
@@ -626,6 +637,11 @@ h4 {
   gap: 2.5rem;
 }
 
+.nav__link--btn {
+  width: 12rem;
+  margin: 0 auto;
+}
+
 .modal__form label {
   font-size: 1.7rem;
   font-weight: 500;
@@ -663,12 +679,204 @@ h4 {
 
 /* COOKIE MESSAGE */
 .cookie-message {
+  position: fixed;
+  bottom: 0;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  width: 100%;
+  width: 50%;
   background-color: white;
   color: #bbb;
   font-size: 1.5rem;
   font-weight: 400;
+  border-radius: 5rem 5rem 0 0;
+  z-index: 12;
+}
+
+.mobile-menu__btn {
+  display: none;
+}
+
+.mobile-nav__link--container {
+  display: none;
+}
+
+@media only screen and (max-width: 1000px) {
+  .nav {
+    padding: 0;
+  }
+
+  .section {
+    padding: 5rem 3rem;
+  }
+
+  .features {
+    margin: 0;
+  }
+
+  .cookie-message {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  html {
+    font-size: 8px;
+    box-sizing: border-box;
+  }
+
+  .nav {
+    padding: 3rem 0;
+    position: relative;
+  }
+
+  .nav__links {
+    display: none !important;
+    position: absolute !important;
+  }
+
+  .mobile-menu__btn {
+    display: block;
+    border: none;
+    border-radius: 50%;
+    padding: 1rem;
+  }
+
+  .mobile-menu__btn:active {
+    background-color: rgba(128, 128, 128, 0.308);
+  }
+
+  .mobile-menu__icon {
+    width: 3rem;
+    height: auto;
+  }
+
+  .overlay {
+    height: 100vh;
+    width: 0;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    background-color: #f3f3f3; /* Black fallback color */
+    transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+  }
+
+  /* Position the content inside the overlay */
+  .overlay-content {
+    position: relative;
+    top: 25%; /* 25% from the top */
+    width: 100%; /* 100% width */
+    text-align: center; /* Centered text/links */
+    margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+  }
+
+  /* The navigation links inside the overlay */
+  .overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #818181;
+    display: block; /* Display block instead of inline */
+    transition: 0.3s; /* Transition effects on hover (color) */
+  }
+
+  /* When you mouse over the navigation links, change their color */
+  .overlay a:hover,
+  .overlay a:focus {
+    color: #1f1b1b;
+  }
+
+  .header__img {
+    display: none;
+  }
+
+  /* Position the close button (top right corner) */
+  .overlay .closebtn {
+    position: absolute;
+    top: 2%;
+    right: 12%;
+    font-size: 5rem;
+  }
+
+  .btn--close-cookie {
+    width: 5rem;
+    padding: 0 1rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .cookie-message {
+    width: 90%;
+    font-size: 1rem;
+    padding: 0 3rem;
+  }
+
+  .header__title {
+    flex: 0;
+    width: 96%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 3rem;
+    align-content: center;
+    justify-content: center;
+    align-items: start;
+    justify-items: start;
+  }
+
+  .features {
+    margin: 0 auto;
+  }
+
+  .features__feature {
+    width: 100%;
+  }
+
+  .btn {
+    font-size: 2rem;
+    padding: 2rem;
+  }
+
+  .operations__tab-container {
+    margin: 12rem 0 0 0;
+  }
+
+  .operations {
+    width: 90%;
+    height: 100%;
+    margin: 3rem auto;
+    background-color: #fff;
+  }
+
+  .section {
+    padding: 3rem;
+  }
+
+  .operations__content {
+    padding: 1rem;
+  }
+
+  .testimonial {
+    width: 100%;
+  }
+
+  .footer__nav {
+    flex-wrap: wrap;
+  }
+
+  .slider {
+    width: 100%;
+    min-height: 100%;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nav__link--btn {
+    width: 40%;
+    margin: 0 auto;
+  }
+  /* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
 }

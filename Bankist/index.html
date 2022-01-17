@@ -34,10 +34,30 @@
           </li>
           <li class="nav__item">
             <a class="nav__link nav__link--btn btn--show-modal" href="#"
-              >Open account</a
+              >Sign Up</a
             >
           </li>
         </ul>
+        <div id="myNav" class="overlay hidden">
+          <!-- Button to close the overlay navigation -->
+          <span href="javascript:void(0)" class="closebtn">&times;</span>
+
+          <!-- Overlay content -->
+          <div class="overlay-content">
+            <a class="nav__link" href="#section--1">Features</a>
+            <a class="nav__link" href="#section--2">Operations</a>
+            <a class="nav__link" href="#section--3">Testimonials</a>
+            <a class="nav__link nav__link--btn btn--show-modal" href="#"
+              >Sign Up</a
+            >
+          </div>
+        </div>
+
+        <!-- Use any element to open/show the overlay navigation menu -->
+
+        <button class="mobile-menu__btn">
+          <img class="mobile-menu__icon" src="img/mobile-menu.png" alt="" />
+        </button>
       </nav>
 
       <div class="header__title">
@@ -327,6 +347,10 @@
           target="_blank"
           href="https://twitter.com/jonasschmedtman"
           >Jonas Schmedtmann</a
+        >
+        and improved by
+        <a class="footer__link twitter-link" href="https://github.com/thenesern"
+          >thenesern</a
         >. Use for learning or your portfolio. Don't use to teach. Don't claim
         as your own product.
       </p>

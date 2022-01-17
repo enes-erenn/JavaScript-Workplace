@@ -67,6 +67,7 @@ btnHold.addEventListener("click", function () {
     if (scores[activePlayer] >= 100) {
       playing = false;
       dice.classList.add("hidden");
+      btnNew.classList.remove("hidden");
       document
         .querySelector(`.player--${activePlayer}`)
         .classList.add("player--winner");
@@ -77,6 +78,25 @@ btnHold.addEventListener("click", function () {
       switchPlayer();
     }
   }
+});
+
+btnNew.addEventListener("click", () => {
+  dice.classList.add("hidden");
+  document
+    .querySelector(`.player--${activePlayer}`)
+    .classList.remove("player--winner");
+  player0.classList.add("player--active");
+
+  scores = [0, 0];
+  currentScore = 0;
+  activePlayer = 0;
+  playing = true;
+
+  scoreP0.textContent = 0;
+  scoreP1.textContent = 0;
+  current0.textContent = 0;
+  current1.textContent = 0;
+  btnNew.classList.add("hidden");
 });
 
 let username0 = [];

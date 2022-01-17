@@ -15,6 +15,7 @@ body {
   font-family: "Nunito", sans-serif;
   font-weight: 400;
   height: 100vh;
+  padding: 5rem 0;
   color: #333;
   background-image: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
   display: flex;
@@ -25,8 +26,9 @@ body {
 /* LAYOUT */
 main {
   position: relative;
-  width: 100rem;
-  height: 60rem;
+  width: 72%;
+  height: 90%;
+  margin: auto;
   background-color: rgba(255, 255, 255, 0.35);
   backdrop-filter: blur(200px);
   filter: blur();
@@ -59,6 +61,7 @@ main {
   max-width: 28rem;
   overflow: hidden;
   border-radius: 1rem;
+  text-align: center;
 }
 
 .name:hover {
@@ -222,4 +225,27 @@ main {
 .edit-btn1:active,
 .edit-btn0:active {
   outline: 1px solid black;
+}
+
+@media only screen and (max-width: 800px) {
+  main {
+    width: 90%;
+  }
+  .player {
+    padding: 5rem 1rem;
+  }
+
+  .btn--new {
+    top: 28%;
+  }
+}
+@media only screen and (max-width: 480px) {
+  html {
+    font-size: 40%;
+  }
+
+  .name {
+    max-width: 24rem;
+    width: 90%;
+  }
 }

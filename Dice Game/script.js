@@ -116,14 +116,28 @@ document.querySelector(".player--0").addEventListener("click", (e) => {
         ] = `<h2 class="name" id="name--0">${getUsername0}</h2>`;
         document.querySelector(".edit-btn0").remove();
       } else {
-        username0.push(document.querySelector(".edit-username0").value);
-        username0.shift();
-        localStorage.setItem("username0", JSON.stringify(username0));
-        const getUsername0 = JSON.parse(localStorage.getItem("username0"));
-        document.querySelector(".edit-username0")[
-          "outerHTML"
-        ] = `<h2 class="name" id="name--0">${getUsername0}</h2>`;
-        document.querySelector(".edit-btn0").remove();
+        if (username0.length === 1) {
+          username0.push(
+            document.querySelector(".edit-username0").value.trim()
+          );
+          username0.shift();
+          localStorage.setItem("username0", JSON.stringify(username0));
+          const getUsername0 = JSON.parse(localStorage.getItem("username0"));
+          document.querySelector(".edit-username0")[
+            "outerHTML"
+          ] = `<h2 class="name" id="name--0">${getUsername0}</h2>`;
+          document.querySelector(".edit-btn0").remove();
+        } else {
+          username0.push(
+            document.querySelector(".edit-username0").value.trim()
+          );
+          localStorage.setItem("username0", JSON.stringify(username0));
+          const getUsername0 = JSON.parse(localStorage.getItem("username0"));
+          document.querySelector(".edit-username0")[
+            "outerHTML"
+          ] = `<h2 class="name" id="name--0">${getUsername0}</h2>`;
+          document.querySelector(".edit-btn0").remove();
+        }
       }
     });
   }
@@ -163,14 +177,24 @@ document.querySelector(".player--1").addEventListener("click", (e) => {
         ] = `<h2 class="name" id="name--1">${getUsername1}</h2>`;
         document.querySelector(".edit-btn1").remove();
       } else {
-        username1.push(document.querySelector(".edit-username1").value);
-        username1.shift();
-        localStorage.setItem("username1", JSON.stringify(username1));
-        const getUsername1 = JSON.parse(localStorage.getItem("username1"));
-        document.querySelector(".edit-username1")[
-          "outerHTML"
-        ] = `<h2 class="name" id="name--1">${getUsername1}</h2>`;
-        document.querySelector(".edit-btn1").remove();
+        if (username1.length === 1) {
+          username1.push(document.querySelector(".edit-username1").value);
+          username1.shift();
+          localStorage.setItem("username1", JSON.stringify(username1));
+          const getUsername1 = JSON.parse(localStorage.getItem("username1"));
+          document.querySelector(".edit-username1")[
+            "outerHTML"
+          ] = `<h2 class="name" id="name--1">${getUsername1}</h2>`;
+          document.querySelector(".edit-btn1").remove();
+        } else {
+          username1.push(document.querySelector(".edit-username1").value);
+          localStorage.setItem("username1", JSON.stringify(username1));
+          const getUsername1 = JSON.parse(localStorage.getItem("username1"));
+          document.querySelector(".edit-username1")[
+            "outerHTML"
+          ] = `<h2 class="name" id="name--1">${getUsername1}</h2>`;
+          document.querySelector(".edit-btn1").remove();
+        }
       }
     });
   }
@@ -178,9 +202,7 @@ document.querySelector(".player--1").addEventListener("click", (e) => {
 
 window.addEventListener("load", (event) => {
   const getUsername0 = JSON.parse(localStorage.getItem("username0"));
-  if (!getUsername0 || getUsername0.length === 0) {
-    localStorage.clear();
-    username0 = [];
+  if (!getUsername0) {
     document
       .querySelector(".player--0")
       .insertAdjacentHTML(
@@ -200,9 +222,7 @@ window.addEventListener("load", (event) => {
 
 window.addEventListener("load", (event) => {
   const getUsername1 = JSON.parse(localStorage.getItem("username1"));
-  if (!getUsername1 || getUsername1.length === 0) {
-    localStorage.clear();
-    username1 = [];
+  if (!getUsername1) {
     document
       .querySelector(".player--1")
       .insertAdjacentHTML(

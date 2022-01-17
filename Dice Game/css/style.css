@@ -56,6 +56,8 @@ main {
   margin-bottom: 1rem;
   transition: all 0.3s ease;
   padding: 1rem;
+  max-width: 28rem;
+  overflow: hidden;
   border-radius: 1rem;
 }
 
@@ -179,7 +181,7 @@ main {
 
 .edit-username1,
 .edit-username0 {
-  width: 70%;
+  width: 80%;
   height: auto;
   padding: 1rem;
   border-radius: 1rem;

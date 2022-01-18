@@ -1,5 +1,5 @@
 <div align=center>
-  <h1>Codepen:</h1> <a href="https://codepen.io/thenesern/pen/vYeaoXe" target="_blank"> To Do List App</a>
+  <h1>Codepen:<a href="https://codepen.io/thenesern/pen/vYeaoXe" target="_blank"> To Do List App</a></h1> 
 </div>
 
 ---

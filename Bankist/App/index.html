@@ -17,26 +17,35 @@
   <body>
     <!-- TOP NAVIGATION -->
     <nav>
-      <p class="welcome">Log in to get started</p>
-      <img src="logo.png" alt="Logo" class="logo" />
+      <div class="message-div">
+        <p class="welcome">Log in to get started</p>
+      </div>
+      <div class="logo-div">
+        <img src="logo.png" alt="Logo" class="logo" />
+      </div>
       <form class="login">
-        <input
-          type="text"
-          placeholder="user"
-          class="login__input login__input--user"
-        />
-        <!-- In practice, use type="password" -->
-        <input
-          type="text"
-          placeholder="PIN"
-          maxlength="4"
-          class="login__input login__input--pin"
-        />
+        <div class="inputs">
+          <input
+            type="text"
+            placeholder="user"
+            class="login__input login__input--user"
+          />
+          <!-- In practice, use type="password" -->
+          <input
+            type="text"
+            placeholder="PIN"
+            maxlength="4"
+            class="login__input login__input--pin"
+          />
+        </div>
         <button class="login__btn">&rarr;</button>
       </form>
+      <div class="btn-div_log-out hidden">
+        <button class="btn_log-out">Log out</button>
+      </div>
     </nav>
 
-    <main class="app">
+    <main class="app hidden">
       <!-- BALANCE -->
       <div class="balance">
         <div>

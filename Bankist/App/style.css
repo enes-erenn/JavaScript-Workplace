@@ -16,18 +16,18 @@ html {
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #444;
   background-color: #f3f3f3;
   height: 100vh;
-  padding: 2rem;
+  user-select: none;
 }
 
 nav {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 0 2rem;
+  align-items: flex-start;
+  padding: 2rem;
 }
 
 .welcome {
@@ -39,11 +39,22 @@ nav {
   height: 5.25rem;
 }
 
-.login {
-  display: flex;
-  opacity: 1;
+.btn-div_log-out {
+  margin-left: 3rem;
 }
 
+.login {
+  display: flex;
+  gap: 1rem;
+}
+
+.inputs {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+  flex-direction: column;
+}
 .login__input {
   border: none;
   padding: 0.5rem 2rem;
@@ -52,7 +63,6 @@ nav {
   text-align: center;
   width: 12rem;
   border-radius: 10rem;
-  margin-right: 1rem;
   color: inherit;
   border: 1px solid #fff;
   transition: all 0.3s;
@@ -70,8 +80,11 @@ nav {
 .login__btn {
   border: none;
   background: none;
-  font-size: 2.2rem;
+  font-size: 2rem;
   color: inherit;
+  border: 1px solid gray;
+  padding: 0 4px;
+  border-radius: 1rem;
   cursor: pointer;
   transition: all 0.3s;
 }
@@ -82,6 +95,7 @@ nav {
 .btn--sort:focus {
   outline: none;
   color: #777;
+  background-color: #e63946;
 }
 
 /* MAIN */
@@ -95,7 +109,6 @@ nav {
   gap: 2rem;
 
   /* NOTE This creates the fade in/out anumation */
-  opacity: 0;
   transition: all 1s;
 }
 
@@ -295,4 +308,22 @@ h2 {
 
 .timer {
   font-weight: 600;
+}
+
+.btn_log-out {
+  padding: 1rem;
+  border-radius: 4px;
+  color: #eee;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid gray;
+  background-color: #ef233c;
+}
+
+.btn_log-out:hover {
+  background-color: #d62828;
+}
+
+.hidden {
+  display: none;
 }

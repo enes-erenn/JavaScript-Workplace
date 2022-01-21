@@ -3,8 +3,8 @@
 </div>
 
 <div align=center>
-<h1>What is this repository and what does it contain?<h1>
-<p>This repository contains kind of challenges or projects to improve or measure my javascript knowledge.</div>
+<h2>What is this repository and what does it contain?<h2>
+<p>This repository contains kind of challenges or projects to improve or measure my javascript knowledge.</p>
 </div>
 
 <div align=center>

@@ -90,9 +90,7 @@ nav {
 }
 
 .login__btn:hover,
-.login__btn:focus,
-.btn--sort:hover,
-.btn--sort:focus {
+.login__btn:focus {
   outline: none;
   color: #777;
   background-color: #e63946;
@@ -141,7 +139,19 @@ nav {
   grid-row: 2 / span 3;
   background-color: #fff;
   border-radius: 1rem;
-  overflow: scroll;
+  overflow-y: scroll;
+}
+
+.movements::-webkit-scrollbar {
+  width: 6px;
+  background-color: transparent;
+  border: 1px solid rgba(128, 128, 128, 0.4);
+  border-radius: 1rem;
+}
+
+.movements::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #457b9d;
 }
 
 .movements__row {
@@ -210,15 +220,6 @@ nav {
 
 .summary__value--out {
   color: #f5465d;
-}
-
-.btn--sort {
-  margin-left: auto;
-  border: none;
-  background: none;
-  font-size: 1.3rem;
-  font-weight: 500;
-  cursor: pointer;
 }
 
 /* OPERATIONS */
@@ -323,4 +324,18 @@ h2 {
 
 .hidden {
   display: none;
+}
+
+@media only screen and (max-width: 1280px) {
+  .app {
+    height: 80vh;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .logo-div {
+    flex: 1 1 50%;
+  }
+  .app {
+    height: 90vh;
+  }
 }

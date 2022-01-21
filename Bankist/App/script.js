@@ -69,7 +69,6 @@ const btnLogin = document.querySelector(".login__btn");
 const btnTransfer = document.querySelector(".form__btn--transfer");
 const btnLoan = document.querySelector(".form__btn--loan");
 const btnClose = document.querySelector(".form__btn--close");
-const btnSort = document.querySelector(".btn--sort");
 
 const login = document.querySelector(".login");
 const inputLoginUsername = document.querySelector(".login__input--user");
@@ -100,12 +99,10 @@ const formatCur = function (value, locale, currency) {
   }).format(value);
 };
 
-const displayMovements = function (acc, sort = false) {
+const displayMovements = function (acc) {
   containerMovements.innerHTML = "";
 
-  const movs = sort
-    ? acc.movements.slice().sort((a, b) => a - b)
-    : acc.movements;
+  const movs = acc.movements;
 
   movs.forEach(function (mov, i) {
     const type = mov > 0 ? "deposit" : "withdrawal";
@@ -283,12 +280,6 @@ btnLoan.addEventListener("click", function (e) {
   inputLoanAmount.value = "";
 });
 
-let sorted = false;
-btnSort.addEventListener("click", function (e) {
-  e.preventDefault();
-  displayMovements(currentAccount.movements, !sorted);
-  sorted = !sorted;
-});
 
 window.addEventListener("load", function () {
   const getUsername = localStorage.getItem("signedUsername");

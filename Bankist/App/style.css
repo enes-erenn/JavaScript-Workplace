@@ -11,7 +11,7 @@
 }
 
 html {
-  font-size: 62.5%;
+  font-size: 60%;
   box-sizing: border-box;
 }
 
@@ -102,7 +102,8 @@ nav {
 .app {
   position: relative;
   max-width: 100rem;
-  margin: 4rem auto;
+  margin: auto;
+  height: 90vh;
   display: grid;
   grid-template-columns: 4fr 3fr;
   grid-template-rows: auto repeat(3, 15rem) auto;
@@ -117,7 +118,6 @@ nav {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  margin-bottom: 2rem;
 }
 
 .balance__label {
@@ -159,6 +159,7 @@ nav {
   padding: 0.1rem 1rem;
   border-radius: 10rem;
   margin-right: 2rem;
+  width: 12rem;
 }
 
 .movements__date {
@@ -235,10 +236,6 @@ nav {
   background-image: linear-gradient(to top left, #39b385, #9be15d);
 }
 
-.operation--close {
-  background-image: linear-gradient(to top left, #e52a5a, #ff585f);
-}
-
 h2 {
   margin-bottom: 1.5rem;
   font-size: 1.7rem;
@@ -313,11 +310,11 @@ h2 {
 .btn_log-out {
   padding: 1rem;
   border-radius: 4px;
-  color: #eee;
+  color: black;
   cursor: pointer;
   transition: all 0.2s ease;
   border: 1px solid gray;
-  background-color: #ef233c;
+  background: transparent;
 }
 
 .btn_log-out:hover {

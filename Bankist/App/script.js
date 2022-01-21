@@ -77,8 +77,6 @@ const inputLoginPin = document.querySelector(".login__input--pin");
 const inputTransferTo = document.querySelector(".form__input--to");
 const inputTransferAmount = document.querySelector(".form__input--amount");
 const inputLoanAmount = document.querySelector(".form__input--loan-amount");
-const inputCloseUsername = document.querySelector(".form__input--user");
-const inputClosePin = document.querySelector(".form__input--pin");
 
 /////////////////////////////////////////////////
 // Functions
@@ -115,13 +113,14 @@ const displayMovements = function (acc, sort = false) {
     const date = new Date(acc.movementsDates[i]);
     const displayDate = formatMovementDate(date, acc.locale);
     const formattedMov = formatCur(mov, acc.locale, acc.currency);
+    const movs = (formattedMov.replace("-", ""))
     const html = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
         <div class="movements__date">${displayDate}</div>
-        <div class="movements__value">${formattedMov}</div>
+        <div class="movements__value">${movs}</div>
       </div>
     `;
     containerMovements.insertAdjacentHTML("afterbegin", html);
@@ -184,8 +183,13 @@ const startLogOutTimer = function () {
     if (time === 0) {
       clearInterval(timer);
       labelWelcome.textContent = `Log in to get started`;
+      document.querySelector(".logo-div").style = null;
+      document.querySelector(".message-div").style = null;
+      document.querySelector(".btn-div_log-out").style = null;
       containerApp.classList.add("hidden");
+      divLogout.classList.add("hidden");
       login.classList.remove("hidden");
+      localStorage.clear();
     }
     --time;
   };
@@ -277,23 +281,6 @@ btnLoan.addEventListener("click", function (e) {
     }, 2000);
   }
   inputLoanAmount.value = "";
-});
-
-btnClose.addEventListener("click", function (e) {
-  e.preventDefault();
-
-  if (
-    inputCloseUsername.value === currentAccount.username &&
-    Number(inputClosePin.value) === currentAccount.pin
-  ) {
-    const index = accounts.findIndex(
-      (acc) => acc.username === currentAccount.username
-    );
-    accounts.splice(index, 1);
-    containerApp.classList.add("hidden");
-  }
-  inputLoginUsername.value = inputLoginPin.value = "";
-  labelWelcome.textContent = "Log in to get started";
 });
 
 let sorted = false;

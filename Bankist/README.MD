@@ -27,7 +27,7 @@
 </div>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/thenesern/JavaScript-Workplace/master/Images/Bankist%20App%20Website/1.png" />
+  <img src="https://raw.githubusercontent.com/thenesern/JavaScript-Workplace/master/Images/Bankist%20Website/1.png" />
 </p>
 
 ---
@@ -37,7 +37,7 @@
 </div>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/thenesern/JavaScript-Workplace/master/Images/Bankist%20App%20Website/1280x800/1.png" />
+  <img src="https://raw.githubusercontent.com/thenesern/JavaScript-Workplace/master/Images/Bankist%20Website/1280x800/1.png" />
 </p>
 
 ---
@@ -47,7 +47,7 @@
 </div>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/thenesern/JavaScript-Workplace/master/Images/Bankist%20App%20Website/800x1280/1.png" />
+  <img src="https://raw.githubusercontent.com/thenesern/JavaScript-Workplace/master/Images/Bankist%20Website/800x1280/1.png" />
 </p>
 
 ---
@@ -57,7 +57,7 @@
 </div>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/thenesern/JavaScript-Workplace/master/Images/Bankist%20App%20Website/360x800/1.png" />
+  <img src="https://raw.githubusercontent.com/thenesern/JavaScript-Workplace/master/Images/Bankist%20Website/360x800/1.png" />
 </p>
 
 ---

@@ -110,7 +110,7 @@ const displayMovements = function (acc) {
     const date = new Date(acc.movementsDates[i]);
     const displayDate = formatMovementDate(date, acc.locale);
     const formattedMov = formatCur(mov, acc.locale, acc.currency);
-    const movs = (formattedMov.replace("-", ""))
+    const movs = formattedMov.replace("-", "");
     const html = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${
@@ -180,7 +180,6 @@ const startLogOutTimer = function () {
     if (time === 0) {
       clearInterval(timer);
       labelWelcome.textContent = `Log in to get started`;
-      document.querySelector(".logo-div").style = null;
       document.querySelector(".message-div").style = null;
       document.querySelector(".btn-div_log-out").style = null;
       containerApp.classList.add("hidden");
@@ -215,6 +214,10 @@ btnLogin.addEventListener("click", function (e) {
       currentAccount.owner.split(" ")[0]
     }`;
     containerApp.classList.remove("hidden");
+    if (screen.width <= 900) {
+      containerApp.style.display = "block";
+    }
+
     const now = new Date();
     const options = {
       hour: "numeric",
@@ -235,9 +238,9 @@ btnLogin.addEventListener("click", function (e) {
     timer = startLogOutTimer();
     login.classList.add("hidden");
     updateUI(currentAccount);
-    document.querySelector(".logo-div").style = "flex: 70%;";
     document.querySelector(".message-div").style = "order: 1";
     document.querySelector(".btn-div_log-out").style = "order: 1";
+    document.getElementById("body").style.backgroundImage = 'url("")';
   }
 });
 
@@ -280,7 +283,6 @@ btnLoan.addEventListener("click", function (e) {
   inputLoanAmount.value = "";
 });
 
-
 window.addEventListener("load", function () {
   const getUsername = localStorage.getItem("signedUsername");
   const getPassword = localStorage.getItem("signedPassword");
@@ -309,12 +311,15 @@ window.addEventListener("load", function () {
     inputLoginPin.blur();
     if (timer) clearInterval(timer);
     timer = startLogOutTimer();
-    document.querySelector(".logo-div").style = "flex: 70%;";
     document.querySelector(".message-div").style = "order: 1";
     document.querySelector(".btn-div_log-out").style = "order: 1";
     login.classList.add("hidden");
     divLogout.classList.remove("hidden");
     updateUI(currentAccount);
+    if (screen.width <= 900) {
+      containerApp.style.display = "block";
+    }
+    document.getElementById("body").style.backgroundImage = 'url("")';
   }
 });
 
@@ -324,10 +329,12 @@ btnLogout.addEventListener("click", () => {
   localStorage.clear();
   clearInterval(timer);
   labelWelcome.textContent = `Log in to get started`;
+  if (containerApp.style.display === "block") {
+    containerApp.style.display = null;
+  }
   containerApp.classList.add("hidden");
   divLogout.classList.add("hidden");
   login.classList.remove("hidden");
-  document.querySelector(".logo-div").style = null;
   document.querySelector(".message-div").style = null;
   document.querySelector(".btn-div_log-out").style = null;
 });

@@ -14,14 +14,11 @@
     <link rel="stylesheet" href="style.css" />
     <title>Bankist</title>
   </head>
-  <body>
+  <body id="body">
     <!-- TOP NAVIGATION -->
     <nav>
       <div class="message-div">
         <p class="welcome">Log in to get started</p>
-      </div>
-      <div class="logo-div">
-        <img src="logo.png" alt="Logo" class="logo" />
       </div>
       <form class="login">
         <div class="inputs">
@@ -75,12 +72,18 @@
 
       <!-- SUMMARY -->
       <div class="summary">
-        <p class="summary__label">In</p>
-        <p class="summary__value summary__value--in">0000€</p>
-        <p class="summary__label">Out</p>
-        <p class="summary__value summary__value--out">0000€</p>
-        <p class="summary__label">Interest</p>
-        <p class="summary__value summary__value--interest">0000€</p>
+        <div>
+          <p class="summary__label">In</p>
+          <p class="summary__value summary__value--in">0000€</p>
+        </div>
+        <div>
+          <p class="summary__label">Out</p>
+          <p class="summary__value summary__value--out">0000€</p>
+        </div>
+        <div>
+          <p class="summary__label">Interest</p>
+          <p class="summary__value summary__value--interest">0000€</p>
+        </div>
       </div>
 
       <!-- OPERATION: TRANSFERS -->
@@ -106,9 +109,11 @@
       </div>
 
       <!-- LOGOUT TIMER -->
-      <p class="logout-timer">
-        You will be logged out in <span class="timer">05:00</span>
-      </p>
+      <div class="timer-div">
+        <p class="logout-timer">
+          You will be logged out in <span class="timer">05:00</span>
+        </p>
+      </div>
     </main>
 
     <!-- <footer>
